@@ -1,0 +1,56 @@
+{
+  "friendRequests": {
+    "req0": {
+      "senderUid": "",
+      "receiverUid": "",
+      "isPending": true,
+      "isAccepted": false
+    }
+  },
+  "queuedItems": {
+    "queue1": {
+      "ownerUid": "",
+      "mediaId": 0,
+      "genres": [0],
+      "posterUrl": "",
+      "description": "",
+      "title": "",
+      "trailerUrls": [""],
+      "runtime": 0,
+      "credits": [{
+        "role": "",
+        "name": "",
+        "personId": 0
+      }],
+      "whereToStream": [{
+        "providerId": 0,
+        "url": ""
+      }]
+    }
+  },
+  "reviews": {
+    "review1": {
+      "ownerUid": "",
+      "mediaId": 0,
+      "starRating": 0,
+      "reviewText": "",
+      "publish": true,
+      "publishDate": 0
+    }
+  },
+  "recommendations": {
+    "rec1": {
+      "senderUid": "",
+      "receiverUid": "",
+      "mediaId": 0,
+      "note": ""
+    }
+  },
+  "userSettings": {
+    "uid": {
+      "streamingOptions": [0],
+      "favoriteGenres": [0],
+      "includeRentals": false
+    }
+  }
+}
