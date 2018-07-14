@@ -11,31 +11,20 @@
     "queue1": {
       "ownerUid": "",
       "mediaId": 0,
-      "genres": [0],
       "posterUrl": "",
       "description": "",
-      "title": "",
-      "trailerUrls": [""],
-      "runtime": 0,
-      "credits": [{
-        "role": "",
-        "name": "",
-        "personId": 0
-      }],
-      "whereToStream": [{
-        "providerId": 0,
-        "url": ""
-      }]
+      "title": ""
     }
   },
   "reviews": {
     "review1": {
-      "ownerUid": "",
+      "reviewerUid": "",
       "mediaId": 0,
+      "posterUrl": "",
       "starRating": 0,
       "reviewText": "",
       "publish": true,
-      "publishDate": 0
+      "date": 0
     }
   },
   "recommendations": {
