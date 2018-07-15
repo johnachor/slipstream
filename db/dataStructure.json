@@ -7,39 +7,23 @@
       "isAccepted": false
     }
   },
-  "queuedItems": {
-    "queue1": {
+  "mediaItems": {
+    "media1": {
       "ownerUid": "",
       "mediaId": 0,
       "posterUrl": "",
       "description": "",
-      "title": ""
-    }
-  },
-  "reviews": {
-    "review1": {
-      "reviewerUid": "",
-      "mediaId": 0,
-      "posterUrl": "",
+      "title": "",
+      "isReviewed": true,
       "starRating": 0,
       "reviewText": "",
-      "publish": true,
-      "date": 0
-    }
-  },
-  "recommendations": {
-    "rec1": {
-      "senderUid": "",
-      "receiverUid": "",
-      "mediaId": 0,
-      "note": ""
+      "reviewDate": 0
     }
   },
   "userSettings": {
-    "uid": {
-      "streamingOptions": [0],
-      "favoriteGenres": [0],
-      "includeRentals": false
+    "setting1": {
+      "userUid": "",
+      "provider8": true
     }
   }
 }
