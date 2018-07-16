@@ -1,4 +1,9 @@
 {
+  "users": {
+    "uid": "asdfasdf",
+    "displayName": "John Achor Test",
+    "email": "testing@diditwork.com"
+  },
   "friendRequests": {
     "req0": {
       "senderUid": "",
