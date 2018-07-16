@@ -53,13 +53,10 @@
       "reviewDate": 0
     }
   },
-  "userSettings": {
-    "setting1": {
-      "userUid": "fakeUser1",
-      "netflix": true,
-      "hulu": false,
-      "amazonprime": true,
-      "hbogo": false
+  "subscriptions": {
+    "subscription1": {
+      "uid": "fakeUser1",
+      "providerId": 8
     },
     "setting2": {
       "userUid": "fakeUser2",
