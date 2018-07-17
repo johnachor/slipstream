@@ -1,8 +1,10 @@
 {
   "users": {
-    "uid": "asdfasdf",
-    "displayName": "John Achor Test",
-    "email": "testing@diditwork.com"
+    "user1": {
+      "uid": "asdfasdf",
+      "displayName": "John Achor Test",
+      "email": "testing@diditwork.com"
+    }
   },
   "friendRequests": {
     "req0": {
@@ -20,6 +22,7 @@
       "description": "Deadpool tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
       "title": "Deadpool",
       "isReviewed": true,
+      "mediaType": "movie",
       "starRating": 4,
       "reviewText": "I usually don't go for superhero movies because I don't like all fighting and no plot, but this one is a riot!",
       "reviewDate": 1531692478728
@@ -31,6 +34,7 @@
       "description": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
       "title": "Star Wars",
       "isReviewed": true,
+      "mediaType": "movie",
       "starRating": 5,
       "reviewText": "OMG this is the most impressive movie I have ever seen",
       "reviewDate": 1531693020645
@@ -42,6 +46,7 @@
       "description": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
       "title": "Star Wars",
       "isReviewed": false,
+      "mediaType": "movie",
       "starRating": 0,
       "reviewText": "",
       "reviewDate": 0
@@ -53,6 +58,7 @@
       "description": "Led by a strange dream, scientist Aki Ross struggles to collect the eight spirits in the hope of creating a force powerful enough to protect the planet. With the aid of the Deep Eyes Squadron and her mentor, Dr. Sid, Aki must save the Earth from its darkest hate and unleash the spirits within.",
       "title": "Final Fantasy: The Spirits Within",
       "isReviewed": false,
+      "mediaType": "movie",
       "starRating": 0,
       "reviewText": "",
       "reviewDate": 0
@@ -62,13 +68,6 @@
     "subscription1": {
       "uid": "fakeUser1",
       "providerId": 8
-    },
-    "setting2": {
-      "userUid": "fakeUser2",
-      "netflix": false,
-      "hulu": true,
-      "amazonprime": true,
-      "hbogo": true
     }
   }
 }
