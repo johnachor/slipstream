@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
 // import FriendList from '../components/FriendList/FriendList';
 // import FriendReview from '../components/FriendReview/FriendReview';
 import Home from '../components/Home/Home';
-// import Login from '../components/Login/Login';
+import Login from '../components/Login/Login';
 // import MediaDetail from '../components/MediaDetail/MediaDetail';
 // import MediaReviews from '../components/MediaReviews/MediaReviews';
 import NavBar from '../components/NavBar/NavBar';
@@ -14,7 +14,7 @@ import NavBar from '../components/NavBar/NavBar';
 import OwnReviews from '../components/OwnReviews/OwnReviews';
 import Queue from '../components/Queue/Queue';
 // import QueuedMedia from '../components/QueuedMedia/QueuedMedia';
-// import Register from '../components/Register/Register';
+import Register from '../components/Register/Register';
 import Search from '../components/Search/Search';
 // import SearchResult from '../components/SearchResult/SearchResult';
 // import SearchResults from '../components/SearchResults/SearchResults';
@@ -29,6 +29,23 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
         ) : (
           <Redirect
             to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/dashboard', state: { from: props.location } }}
           />
         )
       }
@@ -71,6 +88,16 @@ class App extends Component {
                     path="/myreviews"
                     authed={this.state.authed}
                     component={OwnReviews}
+                  />
+                  <PublicRoute
+                    path="/register"
+                    authed={this.state.authed}
+                    component={Register}
+                  />
+                  <PublicRoute
+                    path="/login"
+                    authed={this.state.authed}
+                    component={Login}
                   />
                 </Switch>
               </div>
