@@ -10,36 +10,47 @@ class Register extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      displayName: '',
+      username: '',
     },
+    usernames: [],
   };
 
   registerClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
-    if (user.displayName.length < 6) {
-      alert('Please enter a display name of at least 6 characters.');
-      document.getElementById('inputDisplayName').focus();
-    } else if (user.password !== user.confirmPassword) {
-      alert('Password fields do not match.');
-      const tempUser = { ...this.state.user };
-      tempUser.password = '';
-      tempUser.confirmPassword = '';
-      this.setState({ user: tempUser });
-      document.getElementById('inputPassword').value = '';
-      document.getElementById('confirmPassword').value = '';
-    } else {
-      fbAuth.registerUser(user)
-        .then((userResponse) => {
-          fbUsers.createUserObject({
-            uid: userResponse.user.uid,
-            email: user.email,
-            displayName: user.displayName,
-          }).then(() => {
-            this.props.history.push('/dashboard');
-          });
-        }).catch(err => console.error(err));
-    }
+    fbUsers.getAllUsers()
+      .catch(err => console.error(err))
+      .then(fbReturnedUsers => {
+        const existingUsernames = Object.values(fbReturnedUsers.data).reduce((usernameArray, user) => {
+          usernameArray.push(user.username.toLowerCase().split('').join(''));
+          return usernameArray;
+        }, []);
+        if (user.username.length < 6) {
+          alert('Please enter a username of at least 6 characters.');
+          document.getElementById('inputUsername').focus();
+        } else if (existingUsernames.includes(user.username.toLowerCase().split('').join(''))) {
+          alert('Username already exists. Please choose another username.');
+        } else if (user.password !== user.confirmPassword) {
+          alert('Password fields do not match.');
+          const tempUser = { ...this.state.user };
+          tempUser.password = '';
+          tempUser.confirmPassword = '';
+          this.setState({ user: tempUser });
+          document.getElementById('inputPassword').value = '';
+          document.getElementById('confirmPassword').value = '';
+        } else {
+          fbAuth.registerUser(user)
+            .then((userResponse) => {
+              fbUsers.createUserObject({
+                uid: userResponse.user.uid,
+                email: user.email,
+                username: user.username,
+              }).then(() => {
+                this.props.history.push('/dashboard');
+              });
+            }).catch(err => console.error(err));
+        }
+      });
   };
 
   emailChange = (e) => {
@@ -60,9 +71,9 @@ class Register extends React.Component {
     this.setState({ user: tempUser });
   };
 
-  displayNameChange = (e) => {
+  usernameChange = (e) => {
     const tempUser = { ...this.state.user };
-    tempUser.displayName = e.target.value;
+    tempUser.username = e.target.value;
     this.setState({ user: tempUser });
   };
 
@@ -74,17 +85,17 @@ class Register extends React.Component {
           <h1 className="text-center">Register</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
             <div className="form-group">
-              <label htmlFor="inputDisplayName" className="col-sm-4 control-label">
-                Display Name
+              <label htmlFor="inputUsername" className="col-sm-4 control-label">
+                Username
               </label>
               <div className="col-sm-8">
                 <input
                   type="text"
                   className="form-control"
-                  id="inputDisplayName"
-                  placeholder="Display Name"
-                  value={user.displayName}
-                  onChange={this.displayNameChange}
+                  id="inputUsername"
+                  placeholder="Username"
+                  value={user.username}
+                  onChange={this.usernameChange}
                 />
               </div>
             </div>
