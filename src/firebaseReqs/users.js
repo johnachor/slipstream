@@ -5,4 +5,8 @@ const createUserObject = (user) => {
   return axios.post(`${constants.firebaseConfig.databaseURL}/users.json`, user);
 };
 
-export default { createUserObject };
+const getAllUsers = () => {
+  return axios.get(`${constants.firebaseConfig.databaseURL}/users.json`);
+};
+
+export default { createUserObject, getAllUsers };

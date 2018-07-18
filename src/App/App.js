@@ -18,6 +18,7 @@ import Register from '../components/Register/Register';
 import Search from '../components/Search/Search';
 // import SearchResult from '../components/SearchResult/SearchResult';
 // import SearchResults from '../components/SearchResults/SearchResults';
+import firebase from 'firebase';
 import firebaseInit from '../firebaseReqs/initialize';
 
 firebaseInit();
@@ -30,10 +31,10 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
         authed === true ? (
           <Component {...props} />
         ) : (
-            <Redirect
-              to={{ pathname: '/login', state: { from: props.location } }}
-            />
-          )
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        )
       }
     />
   );
@@ -47,10 +48,10 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => {
         authed === false ? (
           <Component {...props} />
         ) : (
-            <Redirect
-              to={{ pathname: '/dashboard', state: { from: props.location } }}
-            />
-          )
+          <Redirect
+            to={{ pathname: '/dashboard', state: { from: props.location } }}
+          />
+        )
       }
     />
   );
@@ -60,6 +61,16 @@ class App extends Component {
 
   state = {
     authed: false,
+  }
+
+  componentDidMount() {
+    this.authListener = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ authed: user ? true : false });
+    });
+  }
+
+  componentWillUnmount() {
+    this.authListener();
   }
 
   render() {
