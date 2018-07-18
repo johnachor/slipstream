@@ -15,6 +15,7 @@ class Register extends React.Component {
     usernames: [],
   };
 
+  // TODO: refactor this - single responsibility functions
   registerClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
