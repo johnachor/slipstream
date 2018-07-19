@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import fbAuth from '../../firebaseReqs/auth';
 
 import './NavBar.css';
 import Logo from './img/logo.png';
@@ -37,6 +38,9 @@ class NavBar extends React.Component {
                     </li>
                     <li>
                       <Link to="/search">Search</Link>
+                    </li>
+                    <li>
+                      <button className="btn btn-default logoutButton" onClick={fbAuth.logoutUser}>Logout</button>
                     </li>
                   </ul>
                 ) : (
