@@ -78,7 +78,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <NavBar />
+            <NavBar authed={this.state.authed} />
             <div className="container">
               <div className="row">
                 <Switch>
