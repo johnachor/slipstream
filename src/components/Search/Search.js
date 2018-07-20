@@ -1,7 +1,6 @@
 import React from 'react';
 import jw from '../../justwatchApi/justwatch';
-// import SearchResult from '../components/SearchResult/SearchResult';
-// import SearchResults from '../components/SearchResults/SearchResults';
+import SearchResults from '../SearchResults/SearchResults';
 
 import './Search.css';
 
@@ -63,6 +62,7 @@ class Search extends React.Component {
             </div>
           </div>
         </form>
+        <SearchResults results={this.state.searchResults} />
       </div>
     );
   }
