@@ -77,7 +77,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar authed={this.state.authed} />
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <Switch>
                   <Route path="/" exact component={Home} />
