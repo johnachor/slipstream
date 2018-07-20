@@ -16,12 +16,12 @@ class SearchResults extends React.Component {
 
     const resultCards = this.state.results.map(result => {
       return (
-        <SearchResult key={result.id} media={result}/>
+        <SearchResult key={`${result.object_type}-${result.id}`} media={result}/>
       );
     });
 
     return (
-      <div className="SearchResults row">
+      <div className="SearchResults col-xs-12 col-sm-10 col-sm-offset-1">
         {resultCards}
       </div>
     );
