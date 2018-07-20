@@ -21,7 +21,7 @@ class SearchResults extends React.Component {
     });
 
     return (
-      <div className="SearchResults col-xs-12 col-sm-10 col-sm-offset-1">
+      <div className="SearchResults container">
         {resultCards}
       </div>
     );

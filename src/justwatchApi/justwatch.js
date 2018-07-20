@@ -1,4 +1,4 @@
-const JustWatch = require('justwatch-api');
+import JustWatch from 'justwatch-api';
 
 const jw = new JustWatch();
 
