@@ -6,6 +6,10 @@
   }
 }
 
-.navbar .logoutButton {
-  margin: 8px;
+.navbar {
+  margin-bottom: 0;
+
+  .logoutButton {
+    margin: 8px;
+  }
 }

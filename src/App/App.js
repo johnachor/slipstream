@@ -16,8 +16,6 @@ import Queue from '../components/Queue/Queue';
 // import QueuedMedia from '../components/QueuedMedia/QueuedMedia';
 import Register from '../components/Register/Register';
 import Search from '../components/Search/Search';
-// import SearchResult from '../components/SearchResult/SearchResult';
-// import SearchResults from '../components/SearchResults/SearchResults';
 import firebase from 'firebase';
 import firebaseInit from '../firebaseReqs/initialize';
 
@@ -79,7 +77,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar authed={this.state.authed} />
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <Switch>
                   <Route path="/" exact component={Home} />

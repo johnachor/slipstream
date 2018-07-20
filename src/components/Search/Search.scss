@@ -1,0 +1,22 @@
+.Search {
+  padding: 2rem;
+  border: 1rem black;
+  position: relative;
+  transition: all 0.3s;
+  box-shadow: 0 5px 5px black;
+  overflow: auto;
+  background: aliceblue;
+
+  input {
+    padding: 10px;
+    line-height: 1;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+  }
+  input:focus{
+    outline: 0;
+    background: #FFECAE;
+  }
+}
