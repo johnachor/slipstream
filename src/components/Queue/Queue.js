@@ -12,13 +12,16 @@ class Queue extends React.Component {
   updateQueue = () => {
     fbQueue.getMyQueue()
       .then(results => {
-        const queuedItems = Object.entries(results.data).reduce((queueArray, queuedItem) => {
-          if (queuedItem[1].isReviewed === false) {
+        const queuedItems = Object.entries(results.data)
+          .filter(queuedItem => {
+            return !queuedItem[1].isReviewed;
+          })
+          .reduce((queueArray, queuedItem) => {
             queuedItem[1].firebaseId = queuedItem[0];
             queueArray.push(queuedItem[1]);
-          }
-          return queueArray;
-        }, []);
+            return queueArray;
+          }, []);
+
         const tempState = { ...this.state };
         tempState.queue = queuedItems;
         this.setState(tempState);
@@ -28,6 +31,12 @@ class Queue extends React.Component {
 
   componentDidMount() {
     this.updateQueue();
+  }
+
+  deleteQueuedItem = (firebaseId) => {
+    fbQueue.deleteQueueItem(firebaseId)
+      .then(this.updateQueue)
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -40,7 +49,9 @@ class Queue extends React.Component {
 
     return (
       <div className="Queue">
-        <h1>Queue</h1>
+        <div className="container">
+          {queueCards}
+        </div>
       </div>
     );
   }

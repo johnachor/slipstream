@@ -51,7 +51,7 @@ class SearchResult extends React.Component {
               <p>{media.short_description}</p>
             </div>
           </div>
-          <button disabled={this.props.queued} className={`btn ${this.state.queued ? 'btn-success' : 'btn-primary'} addToQueue`} onClick={this.addToQueue}>Add to Queue</button>
+          <button disabled={this.state.queued} className={`btn ${this.state.queued ? 'btn-success' : 'btn-primary'} addToQueue`} onClick={this.addToQueue}>{this.state.queued ? 'Added!' : 'Add to Queue'}</button>
         </div>
       </div>
     );

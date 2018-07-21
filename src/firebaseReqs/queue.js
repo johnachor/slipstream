@@ -8,6 +8,10 @@ const addQueueItem = (media) => {
 
 const getMyQueue = () => {
   return axios.get(`${constants.firebaseConfig.databaseURL}/mediaItems.json?orderBy="ownerUid"&equalTo="${firebase.auth().currentUser.uid}"`);
-}
+};
 
-export default { addQueueItem, getMyQueue };
+const deleteQueueItem = (id) => {
+  return axios.delete(`${constants.firebaseConfig.databaseURL}/mediaItems/${id}.json`);
+};
+
+export default { addQueueItem, getMyQueue, deleteQueueItem };
