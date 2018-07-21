@@ -26,6 +26,16 @@ class QueuedMedia extends React.Component {
     this.props.onDeleteButtonClick(this.props.media.firebaseId);
   }
 
+  reviewItem = () => {
+    const reviewedMedia = { ...this.props.media };
+    delete reviewedMedia.firebaseId;
+    reviewedMedia.reviewDate = Date.now();
+    reviewedMedia.reviewText = this.state.reviewText;
+    reviewedMedia.starRating = this.state.starRating;
+    reviewedMedia.isReviewed = true;
+    this.props.onReviewButtonClick(this.props.media.firebaseId, reviewedMedia);
+  }
+
   render() {
     const { media } = this.props;
     return (
@@ -52,6 +62,7 @@ class QueuedMedia extends React.Component {
               />
             </div>
             <button className="btn btn-danger" onClick={this.removeItem}>Remove from Queue</button>
+            <button className="btn btn-primary" onClick={this.reviewItem}>Submit Review</button>
           </div>
         </div>
       </div>

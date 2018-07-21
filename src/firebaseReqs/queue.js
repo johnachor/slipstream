@@ -14,4 +14,8 @@ const deleteQueueItem = (id) => {
   return axios.delete(`${constants.firebaseConfig.databaseURL}/mediaItems/${id}.json`);
 };
 
-export default { addQueueItem, getMyQueue, deleteQueueItem };
+const addReview = (id, reviewedMedia) => {
+  return axios.put(`${constants.firebaseConfig.databaseURL}/mediaItems/${id}.json`, reviewedMedia);
+};
+
+export default { addQueueItem, getMyQueue, deleteQueueItem, addReview };
