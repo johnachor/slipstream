@@ -13,7 +13,6 @@ class SearchResult extends React.Component {
 
   addToQueue = (e) => {
     e.preventDefault();
-    e.target.disabled = true;
     const queueItem = {
       ownerUid: firebase.auth().currentUser.uid,
       mediaType: this.props.media.object_type,
@@ -52,7 +51,7 @@ class SearchResult extends React.Component {
               <p>{media.short_description}</p>
             </div>
           </div>
-          <button className={`btn ${this.state.queued ? 'btn-success' : 'btn-primary'} addToQueue`} onClick={this.addToQueue}>Add to Queue</button>
+          <button disabled={this.props.queued} className={`btn ${this.state.queued ? 'btn-success' : 'btn-primary'} addToQueue`} onClick={this.addToQueue}>Add to Queue</button>
         </div>
       </div>
     );
