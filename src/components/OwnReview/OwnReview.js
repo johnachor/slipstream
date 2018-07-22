@@ -20,8 +20,8 @@ class OwnReview extends React.Component {
               <StarRating name="mediaRating" starCount={5} value={media.starRating} editing={false} />
               <p>{media.reviewText}</p>
             </div>
-            <button className="btn btn-danger" onClick={this.removeItem}>Delete Review</button>
           </div>
+          <button className="btn btn-danger" onClick={this.removeItem}>Delete Review</button>
         </div>
       </div>
     );
