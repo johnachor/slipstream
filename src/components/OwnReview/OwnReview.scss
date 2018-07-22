@@ -1,0 +1,30 @@
+.OwnReview {
+  border-radius: 10px;
+  box-shadow: 0 5px 5px black;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 0;
+
+  .dv-star-rating i {
+    font-size: 3rem;
+  }
+
+  button {
+    margin: 0;
+    width: 100%;
+  }
+
+  .thumbnail {
+    margin-bottom: 0;
+
+    .caption {
+      height: 250px;
+      padding: 0;
+      overflow: auto;
+
+      h4 {
+        margin: 5px 0 0 0;
+      }
+    }
+  }
+}

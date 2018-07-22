@@ -61,9 +61,9 @@ class QueuedMedia extends React.Component {
                 onChange={this.reviewTextChange}
               />
             </div>
-            <button className="btn btn-danger" onClick={this.removeItem}>Remove from Queue</button>
-            <button className="btn btn-primary" onClick={this.reviewItem}>Submit Review</button>
           </div>
+          <button className="btn btn-danger" onClick={this.removeItem}>Remove</button>
+          <button className="btn btn-primary" onClick={this.reviewItem}>Submit Review</button>
         </div>
       </div>
     );

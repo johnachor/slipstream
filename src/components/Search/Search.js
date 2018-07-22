@@ -12,15 +12,11 @@ class Search extends React.Component {
   }
 
   searchTextChange = (e) => {
-    const tempState = { ...this.state };
-    tempState.searchText = e.target.value;
-    this.setState(tempState);
+    this.setState({searchText: e.target.value});
   };
 
   setSearchResults = (apiResponse) => {
-    const tempState = { ...this.state };
-    tempState.searchResults = apiResponse.items || [];
-    this.setState(tempState);
+    this.setState({ searchResults: apiResponse.items || [] });
   };
 
   searchJW = (e) => {
