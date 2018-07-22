@@ -13,18 +13,16 @@ class Queue extends React.Component {
     fbQueue.getMyQueue()
       .then(results => {
         const queuedItems = Object.entries(results.data)
-          .filter(queuedItem => {
-            return !queuedItem[1].isReviewed;
+          .filter(queueItem => {
+            return !queueItem[1].isReviewed;
           })
-          .reduce((queueArray, queuedItem) => {
-            queuedItem[1].firebaseId = queuedItem[0];
-            queueArray.push(queuedItem[1]);
+          .reduce((queueArray, queueItem) => {
+            queueItem[1].firebaseId = queueItem[0];
+            queueArray.push(queueItem[1]);
             return queueArray;
           }, []);
 
-        const tempState = { ...this.state };
-        tempState.queue = queuedItems;
-        this.setState(tempState);
+        this.setState({ queue: queuedItems });
       })
       .catch(err => console.error(err));
   }
