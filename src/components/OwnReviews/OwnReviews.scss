@@ -6,4 +6,12 @@
   box-shadow: 0 5px 5px black;
   overflow: auto;
   background: aliceblue;
+
+  h4 {
+      text-overflow: ellipsis;
+      margin: 5px 0 0 0;
+      overflow-x: hidden;
+      display: block;
+      white-space: nowrap;
+    }
 }

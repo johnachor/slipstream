@@ -17,7 +17,11 @@
     margin-bottom: 0;
 
     h4 {
+      text-overflow: ellipsis;
       margin: 5px 0 0 0;
+      overflow-x: hidden;
+      display: block;
+      white-space: nowrap;
     }
   }
 }
