@@ -22,3 +22,5 @@ yarn-error.log*
 
 **/*.css
 /src/constants.js
+.firebaserc
+firebase.json

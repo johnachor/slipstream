@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import './App.css';
-// import ActivityFeed from '../components/ActivityFeed/ActivityFeed';
 import Dashboard from '../components/Dashboard/Dashboard';
-// import FriendList from '../components/FriendList/FriendList';
 // import FriendReview from '../components/FriendReview/FriendReview';
 import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
 // import MediaDetail from '../components/MediaDetail/MediaDetail';
 // import MediaReviews from '../components/MediaReviews/MediaReviews';
 import NavBar from '../components/NavBar/NavBar';
-// import OwnReview from '../components/OwnReview/OwnReview';
 import OwnReviews from '../components/OwnReviews/OwnReviews';
 import Queue from '../components/Queue/Queue';
-// import QueuedMedia from '../components/QueuedMedia/QueuedMedia';
 import Register from '../components/Register/Register';
 import Search from '../components/Search/Search';
 import firebase from 'firebase';
@@ -80,7 +76,7 @@ class App extends Component {
             <div className="container-fluid">
               <div className="row">
                 <Switch>
-                  <Route path="/" exact component={Home} />
+                  <Route path="/" exact component={Home} authed={this.state.authed}/>
                   <PrivateRoute
                     path="/search"
                     authed={this.state.authed}

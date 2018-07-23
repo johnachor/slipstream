@@ -10,7 +10,7 @@ const retrieveUsers = () => {
 };
 
 const retrieveBoth = () => {
-  return Promise.all([retrieveFriends(), retrieveUsers()]);
+  return Promise.all([retrieveUsers(), retrieveFriends()]);
 };
 
 const addRequest = (requestObject) => {
