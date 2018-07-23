@@ -38,9 +38,11 @@ class Queue extends React.Component {
   }
 
   reviewQueuedItem = (firebaseId, reviewedMedia) => {
-    fbQueue.addReview(firebaseId, reviewedMedia)
-      .then(this.updateQueue)
-      .catch(err => console.error(err));
+    if (reviewedMedia.starRating !== 0) {
+      fbQueue.addReview(firebaseId, reviewedMedia)
+        .then(this.updateQueue)
+        .catch(err => console.error(err));
+    }
   }
 
   render() {
