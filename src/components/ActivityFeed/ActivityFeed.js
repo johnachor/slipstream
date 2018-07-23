@@ -33,9 +33,16 @@ class ActivityFeed extends React.Component {
   }
 
   render() {
+
+    const reviews = this.state.friendReviews.map(review => {
+      return (
+        <h1 key={review.firebaseId}>{review.reviewText}</h1>
+      );
+    });
+
     return (
       <div className="ActivityFeed">
-        <h1>ActivityFeed</h1>
+        {reviews}
       </div>
     );
   }
