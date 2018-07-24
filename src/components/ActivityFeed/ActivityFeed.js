@@ -23,7 +23,6 @@ class ActivityFeed extends React.Component {
           })
           .sort((a, b) => { return a.reviewDate - b.reviewDate; })
           .reverse();
-        console.log(friendReviews);
         this.setState({ friendReviews: friendReviews });
       })
       .catch(err => console.error(err));

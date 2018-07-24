@@ -16,7 +16,7 @@ class Search extends React.Component {
   };
 
   setSearchResults = (apiResponse) => {
-    this.setState({ searchResults: apiResponse.items || [] });
+    this.setState({ searchResults: apiResponse.data.items });
   };
 
   searchJW = (e) => {
