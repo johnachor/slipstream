@@ -39,7 +39,7 @@ class FriendReview extends React.Component {
           <p>{review.reviewText}</p>
         </div>
         <div className="col-xs-8 queueButtonHolder">
-          <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>Add to my queue</Button>
+          <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to my queue'}</Button>
         </div>
       </div>
     );
