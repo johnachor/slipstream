@@ -13,22 +13,26 @@ class ActivityFeed extends React.Component {
     fbReviews.getEntireQueue()
       .then(queueItems => {
         const friendReviews = Object.entries(queueItems.data)
+          // put firebase ID on objects
           .reduce((acc, kvp) => {
             kvp[1].firebaseId = kvp[0];
             acc.push(kvp[1]);
             return acc;
           }, [])
+          // filter for reviews written by friends
           .filter(review => {
             return this.props.friendUids.includes(review.ownerUid) && review.isReviewed === true;
           })
+          // sort by date
           .sort((a, b) => { return a.reviewDate - b.reviewDate; })
+          // reverse to get descending date
           .reverse();
         this.setState({ friendReviews: friendReviews });
       })
       .catch(err => console.error(err));
   }
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     this.getFriendActivities();
   }
 
