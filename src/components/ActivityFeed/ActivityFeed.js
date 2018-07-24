@@ -1,5 +1,6 @@
 import React from 'react';
 import fbReviews from '../../firebaseReqs/queue';
+import FriendReview from '../FriendReview/FriendReview';
 import './ActivityFeed.css';
 
 class ActivityFeed extends React.Component {
@@ -20,9 +21,9 @@ class ActivityFeed extends React.Component {
           .filter(review => {
             return this.props.friendUids.includes(review.ownerUid) && review.isReviewed === true;
           })
-          .sort((a, b) => {
-            return a.reviewDate - b.reviewDate;
-          });
+          .sort((a, b) => { return a.reviewDate - b.reviewDate; })
+          .reverse();
+        console.log(friendReviews);
         this.setState({ friendReviews: friendReviews });
       })
       .catch(err => console.error(err));
@@ -33,10 +34,10 @@ class ActivityFeed extends React.Component {
   }
 
   render() {
-
+    const { friends } = this.props;
     const reviews = this.state.friendReviews.map(review => {
       return (
-        <h1 key={review.firebaseId}>{review.reviewText}</h1>
+        <FriendReview key={review.firebaseId} review={review} friends={friends}/>
       );
     });
 
