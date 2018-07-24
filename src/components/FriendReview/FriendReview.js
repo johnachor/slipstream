@@ -34,7 +34,8 @@ class FriendReview extends React.Component {
           <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
         </div>
         <div className="col-xs-8 reviewBody">
-          <h4>{reviewer.username} reviewed {review.title}</h4>
+          <h4>{reviewer.username} reviewed </h4>
+          <h4>{review.title}</h4>
           <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
           <p>{review.reviewText}</p>
         </div>
