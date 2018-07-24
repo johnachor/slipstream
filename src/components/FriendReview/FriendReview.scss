@@ -1,4 +1,5 @@
 .FriendReview {
+
   img {
     max-width: 100%;
   }
@@ -6,7 +7,7 @@
   border-radius: 10px;
   box-shadow: 0 5px 5px black;
   background-color: white;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 0;
 
   .dv-star-rating i {
@@ -21,8 +22,18 @@
     white-space: nowrap;
   }
 
-  col-xs-8 {
-    max-height: 100%;
-    overflow: auto;
+  .queueButtonHolder {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+  }
+
+  .posterHolder {
+    padding: 0;
+    
+    img {
+      border-radius: 10px 0 0 10px;
+    }
   }
 }
