@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Tabs, Tab, ListGroup } from 'react-bootstrap';
 import CurrentFriend from '../CurrentFriend/CurrentFriend';
+import fbFriends from '../../firebaseReqs/friends';
 import './FriendList.css';
 
 class FriendList extends React.Component {
@@ -34,6 +35,15 @@ class FriendList extends React.Component {
     });
   }
 
+  deleteFriend = (uid) => {
+    const firebaseIdToDelete = this.props.friendRequests.find(req => {
+      return req.senderUid === uid || req.receiverUid === uid;
+    }).firebaseId;
+    fbFriends.deleteRequest(firebaseIdToDelete)
+      .then(this.props.updater)
+      .catch(err => console.error(err));
+  }
+
   componentWillReceiveProps() {
     this.updateFriendsList();
   }
@@ -42,13 +52,13 @@ class FriendList extends React.Component {
 
     const currentFriendList = this.state.currentFriends.map(friend => {
       return (
-        <CurrentFriend key={friend.uid} friend={friend} />
+        <CurrentFriend key={friend.uid} friend={friend} deleter={this.deleteFriend} />
       );
     });
 
     return (
       <div className="FriendList">
-        <Tabs defaultActiveKey={1} id="friendsListTabs">
+        <Tabs animation={false} defaultActiveKey={1} id="friendsListTabs">
           <Tab eventKey={1} title="Friends">
             <ListGroup>{currentFriendList}</ListGroup>
           </Tab>
@@ -58,7 +68,7 @@ class FriendList extends React.Component {
           <Tab eventKey={3} title="Find">
             Tab 3 content
           </Tab>
-        </Tabs>;
+        </Tabs>
       </div>
     );
   }

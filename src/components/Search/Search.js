@@ -21,8 +21,12 @@ class Search extends React.Component {
 
   searchJW = (e) => {
     e.preventDefault();
+    this.setState({ searching: true });
     jw.jwSearch(this.state.searchText)
-      .then(this.setSearchResults)
+      .then((response) => {
+        this.setState({ searching: false });
+        this.setSearchResults(response);
+      })
       .catch(err => console.error(err));
   }
 
@@ -52,8 +56,9 @@ class Search extends React.Component {
                 type="submit"
                 className="btn btn-default col-xs-12"
                 onClick={this.searchJW}
+                disabled={this.state.searching}
               >
-                Search
+                {this.state.searching ? 'Working...' : 'Search'}
               </button>
             </div>
           </div>

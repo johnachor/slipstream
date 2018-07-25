@@ -4,9 +4,16 @@ import './CurrentFriend.css';
 
 class CurrentFriend extends React.Component {
 
+  deleteFriend = () => {
+    this.props.deleter(this.props.friend.uid);
+  }
+
   render() {
     return (
-      <ListGroupItem>{this.props.friend.username}</ListGroupItem>
+      <ListGroupItem className="CurrentFriend">
+        {this.props.friend.username}
+        <Button bsStyle='danger' onClick={this.deleteFriend}>Delete</Button>
+      </ListGroupItem>
     );
   }
 

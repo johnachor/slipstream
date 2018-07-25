@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
         });
       this.setState({ friendRequests: friendRequests });
       this.setState({
-        friendUids: this.state.friendRequests
+        friendUids: friendRequests
           .filter(req => { return req.isAccepted; })
           .reduce((accArray, currentReq) => {
             if (currentReq.senderUid === firebase.auth().currentUser.uid) {
@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
           }, []),
       });
       this.setState({
-        friendObjects: this.state.users.filter(user => { return this.state.friendUids.includes(user.uid); }),
+        friendObjects: Object.values(usersAndFriends[0].data).filter(user => { return this.state.friendUids.includes(user.uid); }),
       });
     }).catch(err => console.error(err));
   }
@@ -58,10 +58,10 @@ class Dashboard extends React.Component {
       <div className="Dashboard">
         <div className="container-fluid">
           <div className="col-xs-12 col-sm-9">
-            <ActivityFeed friends={this.state.friendObjects} friendUids={this.state.friendUids} />
+            <ActivityFeed updater={this.getUsersAndFriends} friends={this.state.friendObjects} friendUids={this.state.friendUids} />
           </div>
           <div className="col-xs-12 col-sm-3">
-            <FriendList friendUids={this.state.friendUids} friendRequests={this.state.friendRequests} users={this.state.users}/>
+            <FriendList updater={this.getUsersAndFriends} friendUids={this.state.friendUids} friendRequests={this.state.friendRequests} users={this.state.users}/>
           </div>
         </div>
       </div>
