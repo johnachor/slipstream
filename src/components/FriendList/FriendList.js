@@ -1,5 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Tabs, Tab, ListGroup } from 'react-bootstrap';
+import CurrentFriend from '../CurrentFriend/CurrentFriend';
 import './FriendList.css';
 
 class FriendList extends React.Component {
@@ -37,9 +39,26 @@ class FriendList extends React.Component {
   }
 
   render() {
+
+    const currentFriendList = this.state.currentFriends.map(friend => {
+      return (
+        <CurrentFriend key={friend.uid} friend={friend} />
+      );
+    });
+
     return (
       <div className="FriendList">
-        <h1>FriendList</h1>
+        <Tabs defaultActiveKey={1} id="friendsListTabs">
+          <Tab eventKey={1} title="Friends">
+            <ListGroup>{currentFriendList}</ListGroup>
+          </Tab>
+          <Tab eventKey={2} title="Pending">
+            Tab 2 content
+          </Tab>
+          <Tab eventKey={3} title="Find">
+            Tab 3 content
+          </Tab>
+        </Tabs>;
       </div>
     );
   }
