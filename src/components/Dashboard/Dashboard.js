@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
             <ActivityFeed friends={this.state.friendObjects} friendUids={this.state.friendUids} />
           </div>
           <div className="col-xs-12 col-sm-3">
-            <FriendList friendRequests={this.state.friendRequests} users={this.state.users}/>
+            <FriendList friendUids={this.state.friendUids} friendRequests={this.state.friendRequests} users={this.state.users}/>
           </div>
         </div>
       </div>
