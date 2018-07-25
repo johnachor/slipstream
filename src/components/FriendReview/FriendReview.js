@@ -29,17 +29,17 @@ class FriendReview extends React.Component {
     const { review } = this.props;
     const reviewer = this.props.friends.find(friend => { return friend.uid === review.ownerUid; });
     return (
-      <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-        <div className="col-xs-4 posterHolder">
+      <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0">
+        <div className="col-xs-5 posterHolder">
           <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
         </div>
-        <div className="col-xs-8 reviewBody">
+        <div className="col-xs-7 reviewBody">
           <h4>{reviewer.username} reviewed </h4>
           <h4>{review.title}</h4>
           <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
           <p>{review.reviewText}</p>
         </div>
-        <div className="col-xs-8 queueButtonHolder">
+        <div className="col-xs-7 queueButtonHolder">
           <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to my queue'}</Button>
         </div>
       </div>

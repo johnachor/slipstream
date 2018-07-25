@@ -1,5 +1,5 @@
 import React from 'react';
-import StarRating from 'react-star-rating-component';
+// import StarRating from 'react-star-rating-component';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
 import './SearchResult.css';
@@ -7,7 +7,7 @@ import './SearchResult.css';
 class SearchResult extends React.Component {
 
   state = {
-    rating: 3,
+    // rating: 3,
     queued: this.props.queued || false,
   }
 
@@ -36,7 +36,7 @@ class SearchResult extends React.Component {
 
   render() {
     const { media } = this.props;
-    const { rating } = this.state;
+    // const { rating } = this.state;
 
     if (media.poster) media.poster = media.poster.replace('{profile}', 's592');
 
@@ -47,7 +47,7 @@ class SearchResult extends React.Component {
             <img src={`https://images.justwatch.com${media.poster}`} alt="Poster" />
             <div className="caption">
               <h4>{media.title}</h4>
-              <StarRating name="mediaRating" starCount={5} value={rating} editing={false} />
+              {/* <StarRating name="mediaRating" starCount={5} value={rating} editing={false} /> */}
               <p>{media.short_description}</p>
             </div>
           </div>

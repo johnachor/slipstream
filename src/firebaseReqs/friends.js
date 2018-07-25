@@ -14,15 +14,15 @@ const retrieveBoth = () => {
 };
 
 const addRequest = (requestObject) => {
-  return axios.post(`${constants.firebaseConfig.databaseURL}/friends.json`, requestObject);
+  return axios.post(`${constants.firebaseConfig.databaseURL}/friendRequests.json`, requestObject);
 };
 
 const updateRequest = (firebaseId, requestObject) => {
-  return axios.put(`${constants.firebaseConfig.databaseURL}/friends/${firebaseId}.json`, requestObject);
+  return axios.put(`${constants.firebaseConfig.databaseURL}/friendRequests/${firebaseId}.json`, requestObject);
 };
 
 const deleteRequest = (firebaseId) => {
-  return axios.delete(`${constants.firebaseConfig.databaseURL}/friends/${firebaseId}.json`);
+  return axios.delete(`${constants.firebaseConfig.databaseURL}/friendRequests/${firebaseId}.json`);
 };
 
 export default { addRequest, updateRequest, deleteRequest, retrieveBoth, retrieveFriends, retrieveUsers };
