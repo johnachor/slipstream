@@ -1,7 +1,8 @@
 import React from 'react';
 import firebase from 'firebase';
-import { Tabs, Tab, ListGroup } from 'react-bootstrap';
+import { Badge, Tabs, Tab, ListGroup, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import CurrentFriend from '../CurrentFriend/CurrentFriend';
+import FriendSearchResult from '../FriendSearchResult/FriendSearchResult';
 import fbFriends from '../../firebaseReqs/friends';
 import './FriendList.css';
 
@@ -11,6 +12,8 @@ class FriendList extends React.Component {
     currentFriends: [],
     pendingRequests: [],
     availableUsers: [],
+    searchResults: [],
+    searchText: '',
   }
 
   checkIfRequested = (friendUid) => {
@@ -44,8 +47,36 @@ class FriendList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  sendFriendRequest = (requestObject) => {
+    fbFriends.addRequest(requestObject)
+      .then(() => {
+        const tempResultsState = [...this.state.searchResults];
+        this.setState({
+          searchResults: tempResultsState.filter(user => {
+            return user.uid !== requestObject.receiverUid;
+          }),
+        });
+        this.props.updater();
+      })
+      .catch(err => console.error(err));
+  }
+
   componentWillReceiveProps() {
     this.updateFriendsList();
+  }
+
+  searchUsers = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const searchResults = this.state.availableUsers.filter(user => {
+        return user.username.toLowerCase().split(' ').join('').includes(this.state.searchText) || user.email.toLowerCase().split(' ').join('').includes(this.state.searchText);
+      });
+      this.setState({ searchResults: searchResults });
+    }
+  };
+
+  searchTextChange = (e) => {
+    this.setState({ searchText: e.target.value });
   }
 
   render() {
@@ -56,17 +87,42 @@ class FriendList extends React.Component {
       );
     });
 
+    const friendSearchResultList = this.state.searchResults.map(user => {
+      return (
+        <FriendSearchResult key={user.uid} user={user} requester={this.sendFriendRequest} />
+      );
+    });
+
+    const pendingTitle = <span>Pending <Badge>{this.state.pendingRequests.length > 0 ? this.state.pendingRequests.length : ''}</Badge></span>;
+
     return (
       <div className="FriendList">
         <Tabs animation={false} defaultActiveKey={1} id="friendsListTabs">
           <Tab eventKey={1} title="Friends">
             <ListGroup>{currentFriendList}</ListGroup>
           </Tab>
-          <Tab eventKey={2} title="Pending">
+          <Tab eventKey={2} title={pendingTitle}>
             Tab 2 content
           </Tab>
           <Tab eventKey={3} title="Find">
-            Tab 3 content
+            <form>
+              <FormGroup
+                controlId="friendSearchForm"
+              >
+                <ControlLabel>Search by username or email</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.searchText}
+                  placeholder="Search term"
+                  onChange={this.searchTextChange}
+                  onKeyPress={this.searchUsers}
+                />
+              </FormGroup>
+            </form>
+            {friendSearchResultList}
+          </Tab>
+          <Tab eventKey={4} title="Options">
+            Options
           </Tab>
         </Tabs>
       </div>
