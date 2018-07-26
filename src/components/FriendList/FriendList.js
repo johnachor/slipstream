@@ -69,7 +69,7 @@ class FriendList extends React.Component {
     if (e.key === 'Enter') {
       e.preventDefault();
       const searchResults = this.state.availableUsers.filter(user => {
-        return user.username.toLowerCase().split(' ').join('').includes(this.state.searchText) || user.email.toLowerCase().split(' ').join('').includes(this.state.searchText);
+        return user.username.toLowerCase().split(' ').join('').includes(this.state.searchText) || user.email.toLowerCase() === (this.state.searchText);
       });
       this.setState({ searchResults: searchResults });
     }
