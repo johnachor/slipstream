@@ -48,6 +48,10 @@ class FriendList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  deleteFriendRequest = (firebaseId) => {
+    fbFriends.deleteRequest(firebaseId).then(this.props.updater).catch(err => console.error(err));
+  }
+
   sendFriendRequest = (requestObject) => {
     fbFriends.addRequest(requestObject)
       .then(() => {
@@ -103,7 +107,7 @@ class FriendList extends React.Component {
     const pendingRequestList = this.state.pendingRequests.map(req => {
       req.username = this.props.users.find(user => { return user.uid === req.senderUid; }).username;
       return (
-        <PendingFriend key={req.firebaseId} req={req} confirm={this.confirmFriendRequest} deleter={this.deleteFriend} />
+        <PendingFriend key={req.firebaseId} req={req} confirm={this.confirmFriendRequest} deleter={this.deleteFriendRequest} />
       );
     });
 
