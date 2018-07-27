@@ -24,6 +24,7 @@ class FriendReview extends React.Component {
       .catch(err => console.error(err));
   }
 
+  // TODO: find reviewer user object in parent component and pass in as prop instead of doing the logic in here
   render() {
 
     const { review } = this.props;
@@ -34,7 +35,7 @@ class FriendReview extends React.Component {
           <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
         </div>
         <div className="col-xs-7 reviewBody">
-          <h4>{reviewer.username} reviewed </h4>
+          <h4>{reviewer ? reviewer.username : ''} reviewed </h4>
           <h4>{review.title}</h4>
           <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
           <p>{review.reviewText}</p>
