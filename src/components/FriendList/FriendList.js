@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { Badge, Tabs, Tab, ListGroup, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import CurrentFriend from '../CurrentFriend/CurrentFriend';
 import FriendSearchResult from '../FriendSearchResult/FriendSearchResult';
+import PendingFriend from '../PendingFriend/PendingFriend';
 import fbFriends from '../../firebaseReqs/friends';
 import './FriendList.css';
 
@@ -79,6 +80,12 @@ class FriendList extends React.Component {
     this.setState({ searchText: e.target.value });
   }
 
+  confirmFriendRequest = (firebaseId, requestObject) => {
+    fbFriends.updateRequest(firebaseId, requestObject)
+      .then(this.props.updater)
+      .catch(err => console.error(err));
+  }
+
   render() {
 
     const currentFriendList = this.state.currentFriends.map(friend => {
@@ -93,6 +100,13 @@ class FriendList extends React.Component {
       );
     });
 
+    const pendingRequestList = this.state.pendingRequests.map(req => {
+      req.username = this.props.users.find(user => { return user.uid === req.senderUid; }).username;
+      return (
+        <PendingFriend key={req.firebaseId} req={req} confirm={this.confirmFriendRequest} deleter={this.deleteFriend} />
+      );
+    });
+
     const pendingTitle = <span>Pending <Badge>{this.state.pendingRequests.length > 0 ? this.state.pendingRequests.length : ''}</Badge></span>;
 
     return (
@@ -102,7 +116,7 @@ class FriendList extends React.Component {
             <ListGroup>{currentFriendList}</ListGroup>
           </Tab>
           <Tab eventKey={2} title={pendingTitle}>
-            Tab 2 content
+            {pendingRequestList}
           </Tab>
           <Tab eventKey={3} title="Find">
             <form>
