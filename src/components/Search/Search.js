@@ -16,7 +16,7 @@ class Search extends React.Component {
   };
 
   setSearchResults = (apiResponse) => {
-    this.setState({ searchResults: apiResponse.data.items });
+    this.setState({ searchResults: apiResponse.data.items.filter(item => { return item.poster; }) });
   };
 
   searchJW = (e) => {
@@ -27,7 +27,10 @@ class Search extends React.Component {
         this.setState({ searching: false });
         this.setSearchResults(response);
       })
-      .catch(err => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        this.setState({ searching: false });
+      });
   }
 
   render() {

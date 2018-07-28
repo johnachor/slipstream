@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import Dashboard from '../components/Dashboard/Dashboard';
-// import FriendReview from '../components/FriendReview/FriendReview';
 import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
-// import MediaDetail from '../components/MediaDetail/MediaDetail';
+import MediaDetail from '../components/MediaDetail/MediaDetail';
 // import MediaReviews from '../components/MediaReviews/MediaReviews';
 import NavBar from '../components/NavBar/NavBar';
 import OwnReviews from '../components/OwnReviews/OwnReviews';
@@ -96,6 +95,16 @@ class App extends Component {
                     path="/myreviews"
                     authed={this.state.authed}
                     component={OwnReviews}
+                  />
+                  <PrivateRoute
+                    path="/detail/:mediaType/:mediaId"
+                    authed={this.state.authed}
+                    component={MediaDetail}
+                  />
+                  <PrivateRoute
+                    path="/movie/:mediaId"
+                    authed={this.state.authed}
+                    component={MediaDetail}
                   />
                   <PublicRoute
                     path="/register"
