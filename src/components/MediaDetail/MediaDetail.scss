@@ -6,6 +6,7 @@
   box-shadow: 0 5px 5px black;
   overflow: auto;
   background: aliceblue;
+  max-height: calc(100vh - 100);
 
   .mediaCard {
     border-radius: 10px;
@@ -15,5 +16,39 @@
     transition: all 0.3s;
     box-shadow: 0 5px 5px black;
     overflow: auto;
+    padding: 0;
   }
+
+  .left-column {
+    padding: 0;
+
+    img {
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .mini-left {
+      text-align: left;
+    }
+    .mini-right {
+      text-align: right;
+    }
+  }
+
+  .right-column {
+
+    overflow: auto;
+    max-height: 100%;
+    padding-right: 0;
+
+    .userReview {
+      padding: 1rem;
+      border: 1px solid black;
+      position: relative;
+      transition: all 0.3s;
+      // box-shadow: 0 5px 5px black;
+      border-radius: 10px;
+    }
+  }
+  
 }
