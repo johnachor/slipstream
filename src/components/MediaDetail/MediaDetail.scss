@@ -1,0 +1,50 @@
+.MediaDetail {
+  padding: 2rem;
+  border: 1rem black;
+  position: relative;
+  transition: all 0.3s;
+  box-shadow: 0 5px 5px black;
+  background: aliceblue;
+  display: block;
+
+  .left-column {
+    
+
+    img {
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .mini-left {
+      text-align: left;
+    }
+    .mini-right {
+      text-align: right;
+    }
+  }
+
+  .clips-holder {
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .right-column {
+
+    overflow: auto;
+    max-height: calc(100vh - 60px);
+
+    .userReview {
+      padding: 1rem;
+      border: 1px solid black;
+      position: relative;
+      transition: all 0.3s;
+      // box-shadow: 0 5px 5px black;
+      border-radius: 10px;
+    }
+  }
+  
+  .providerLink img {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+}

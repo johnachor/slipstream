@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
 import './FriendReview.css';
@@ -24,6 +25,11 @@ class FriendReview extends React.Component {
       .catch(err => console.error(err));
   }
 
+  goToDetail = () => {
+    const { review } = this.props;
+    this.props.history.push(`/details/${review.mediaType}/${review.mediaId}`);
+  }
+
   // TODO: find reviewer user object in parent component and pass in as prop instead of doing the logic in here
   render() {
 
@@ -41,6 +47,7 @@ class FriendReview extends React.Component {
           <p>{review.reviewText}</p>
         </div>
         <div className="col-xs-7 queueButtonHolder">
+          <Link to={`/detail/${review.mediaType}/${review.mediaId}`}><Button block bsStyle='info'>See Details</Button></Link>
           <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to my queue'}</Button>
         </div>
       </div>

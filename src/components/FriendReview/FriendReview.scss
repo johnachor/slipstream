@@ -1,7 +1,7 @@
 .FriendReview {
 
   .btn-block {
-    border-radius: 0 0 10px 0;
+    border-radius: 0;
   }
 
   img {
@@ -31,6 +31,7 @@
     bottom: 0;
     right: 0;
     padding: 0;
+    border-radius: 0 0 10px 0;
   }
 
   .posterHolder {
@@ -39,5 +40,9 @@
     img {
       border-radius: 10px 0 0 10px;
     }
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 }
