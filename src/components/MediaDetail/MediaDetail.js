@@ -4,11 +4,15 @@ import './MediaDetail.css';
 import fbQueue from '../../firebaseReqs/queue';
 import fbSubs from '../../firebaseReqs/subs';
 import StarRating from 'react-star-rating-component';
+import YouTube from 'react-youtube';
+import { Link } from 'react-router-dom';
 
 class MediaDetail extends React.Component {
 
   state = {
-    details: {},
+    details: {
+      clips: [],
+    },
     userReviews: [],
     streamingOptions: [],
     overallRating: 0,
@@ -17,6 +21,7 @@ class MediaDetail extends React.Component {
   shapeData = (promiseResponseArray) => {
     const itemDetail = promiseResponseArray[0].data;
     itemDetail.poster = itemDetail.poster.replace('{profile}', 's592');
+    if (!itemDetail.clips) itemDetail.clips = [];
     const mediaType = itemDetail.object_type;
     const mediaId = itemDetail.id;
 
@@ -59,6 +64,10 @@ class MediaDetail extends React.Component {
 
     const { details } = this.state;
 
+    const providers = {
+      8: 'Netflix',
+    };
+
     const reviews = this.state.userReviews.map(review => {
       return (
         <div key={review.ownerUid} className="userReview">
@@ -67,6 +76,21 @@ class MediaDetail extends React.Component {
         </div>
       );
     });
+
+    const clips = details.clips.map(clip => {
+      return clip.provider === 'youtube' ? (
+        <YouTube key={clip.external_id} videoId={clip.external_id} opts={{width: '100%'}} />
+      ) : '';
+    });
+
+    const streamLinks = details.offers ? details.offers.filter(offer => {
+      return offer.monetization_type === 'flatrate' && this.state.streamingOptions.includes(offer.provider_id) && offer.presentation_type === 'hd';
+    })
+      .map(offer => {
+        return (
+          <Link key={offer.urls.standard_web} to={`${offer.urls.standard_web}`}>{providers[offer.provider_id]}</Link>
+        );
+      }) : [];
 
     return (
       <div className="MediaDetail">
@@ -78,7 +102,12 @@ class MediaDetail extends React.Component {
             <div className="col-xs-4"><h4>{details.original_release_year}</h4></div>
             <div className="col-xs-4 mini-right"><h4>{details.object_type === 'show' ? `${details.max_season_number} seasons` : `${details.runtime} minutes`}</h4></div>
           </div>
-          <div className="col-lg-4 middle-column">Streaming options, description, trailer</div>
+          <div className="col-lg-4 middle-column">
+            <h4>Streaming options:</h4>
+            {streamLinks}
+            <p>{details.short_description}</p>
+            {clips.length ? clips[0] : 'None'}
+          </div>
           <div className="col-lg-4 right-column"><h4>User Reviews:</h4>{reviews}</div>
         </div>
       </div>
