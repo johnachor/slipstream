@@ -5,7 +5,6 @@ import fbQueue from '../../firebaseReqs/queue';
 import fbSubs from '../../firebaseReqs/subs';
 import StarRating from 'react-star-rating-component';
 import YouTube from 'react-youtube';
-import { Link } from 'react-router-dom';
 
 class MediaDetail extends React.Component {
 
@@ -14,8 +13,9 @@ class MediaDetail extends React.Component {
       clips: [],
     },
     userReviews: [],
-    streamingOptions: [],
+    userSubscriptions: [],
     overallRating: 0,
+    streamingProviders: {},
   }
 
   shapeData = (promiseResponseArray) => {
@@ -42,20 +42,34 @@ class MediaDetail extends React.Component {
     }
 
     // make array of numbers representing streaming providers the current user is subscribed to
-    const streamingOptions = Object.values(promiseResponseArray[2].data).map(sub => { return sub.providerId; });
+    const userSubscriptions = Object.values(promiseResponseArray[3].data).map(sub => { return sub.providerId; });
+
+    const streamingProviders = promiseResponseArray[2].data.reduce((providersObject, currentProvider) => {
+      if (currentProvider.monetization_types.includes('flatrate')) {
+        providersObject[currentProvider.id] = {
+          icon: currentProvider.icon_url.replace('{profile}', 's100'),
+          name: currentProvider.clear_name,
+        };
+      }
+      return providersObject;
+    }, {});
+
+    console.log(streamingProviders);
+    console.log(promiseResponseArray[2]);
 
     this.setState({
       details: itemDetail,
       userReviews: userReviews,
       overallRating: overallRating,
-      streamingOptions: streamingOptions,
+      userSubscriptions: userSubscriptions,
+      streamingProviders: streamingProviders,
     });
   }
 
   componentDidMount() {
     const mediaType = this.props.match.params.mediaType;
     const mediaId = this.props.match.params.mediaId;
-    Promise.all([jw.jwGetItemDetail(mediaType, mediaId), fbQueue.getEntireQueue(), fbSubs.getMySubscriptions()])
+    Promise.all([jw.jwGetItemDetail(mediaType, mediaId), fbQueue.getEntireQueue(), jw.jwGetProviders(), fbSubs.getMySubscriptions()])
       .then(this.shapeData)
       .catch(err => console.error(err));
   }
@@ -64,54 +78,54 @@ class MediaDetail extends React.Component {
 
     const { details } = this.state;
 
-    const providers = {
-      8: 'Netflix',
-    };
-
     const reviews = this.state.userReviews.map(review => {
-      return (
+      return review.reviewText ? (
         <div key={review.ownerUid} className="userReview">
           <StarRating name="userStarRating" starCount={5} value={review.starRating} editing={false} />
           <p className="text-left">{review.reviewText}</p>
         </div>
-      );
+      ) : '';
     });
 
     const clips = details.clips.map(clip => {
       return clip.provider === 'youtube' ? (
-        <YouTube key={clip.external_id} videoId={clip.external_id} opts={{width: '100%'}} />
+        <div className="clip" key={clip.external_id}>
+          <h6>{clip.name}</h6>
+          <YouTube videoId={clip.external_id} opts={{ width: '100%' }} />
+        </div>
       ) : '';
     });
 
     const streamLinks = details.offers ? details.offers.filter(offer => {
-      return offer.monetization_type === 'flatrate' && this.state.streamingOptions.includes(offer.provider_id) && offer.presentation_type === 'hd';
+      return offer.monetization_type === 'flatrate' && this.state.userSubscriptions.includes(offer.provider_id) && offer.presentation_type === 'hd';
     })
       .map(offer => {
         return (
-          <Link key={offer.urls.standard_web} to={`${offer.urls.standard_web}`}>{providers[offer.provider_id]}</Link>
+          <a className="providerLink" key={offer.provider_id} href={`${offer.urls.standard_web}`}><img alt={this.state.streamingProviders[offer.provider_id].name} src={`https://images.justwatch.com${this.state.streamingProviders[offer.provider_id].icon}`} /></a>
         );
       }) : [];
 
-    return (
+    return details.title ? (
       <div className="MediaDetail">
-        <div className="mediaCard container">
+        <div className="container">
           <div className="col-lg-4 left-column">
-            <img src={`https://images.justwatch.com${details.poster}`} alt="Poster" />
             <h4>{details.title}</h4>
             <div className="col-xs-4 mini-left"><h4>{details.age_certification}</h4></div>
             <div className="col-xs-4"><h4>{details.original_release_year}</h4></div>
             <div className="col-xs-4 mini-right"><h4>{details.object_type === 'show' ? `${details.max_season_number} seasons` : `${details.runtime} minutes`}</h4></div>
+            <img src={`https://images.justwatch.com${details.poster}`} alt="Poster" />
+            <p>{details.short_description}</p>
           </div>
           <div className="col-lg-4 middle-column">
+            <h4>Clips and trailers:</h4>
+            <div className="clips-holder">{clips.length ? clips : 'None'}</div>
             <h4>Streaming options:</h4>
             {streamLinks}
-            <p>{details.short_description}</p>
-            {clips.length ? clips[0] : 'None'}
           </div>
           <div className="col-lg-4 right-column"><h4>User Reviews:</h4>{reviews}</div>
         </div>
       </div>
-    );
+    ) : (<h1>Retrieving details, please wait...</h1>);
   }
 }
 
