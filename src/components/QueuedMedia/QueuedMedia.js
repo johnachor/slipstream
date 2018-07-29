@@ -1,7 +1,8 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
-
 import './QueuedMedia.css';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 class QueuedMedia extends React.Component {
 
@@ -41,6 +42,7 @@ class QueuedMedia extends React.Component {
     return (
       <div className="col-xs-12 col-sm-6 col-md-4">
         <div className="QueuedMedia">
+          <Button className="bottomButton" block bsStyle="danger" onClick={this.removeItem}>Remove</Button>
           <div className="thumbnail">
             <img src={`https://images.justwatch.com${media.posterUrl}`} alt="Poster" />
             <div className="caption">
@@ -62,8 +64,8 @@ class QueuedMedia extends React.Component {
               />
             </div>
           </div>
-          <button className="btn btn-danger" onClick={this.removeItem}>Remove</button>
-          <button className="btn btn-primary" onClick={this.reviewItem}>Submit Review</button>
+          <Link to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <Button className="bottomButton" block bsStyle="primary" onClick={this.reviewItem}>Submit Review</Button>
         </div>
       </div>
     );

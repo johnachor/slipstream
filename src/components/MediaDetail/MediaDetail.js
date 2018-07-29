@@ -44,6 +44,7 @@ class MediaDetail extends React.Component {
     // make array of numbers representing streaming providers the current user is subscribed to
     const userSubscriptions = Object.values(promiseResponseArray[3].data).map(sub => { return sub.providerId; });
 
+    // make easier-to-read object with provider id as key names and properties for icon and name, also show flatrate only
     const streamingProviders = promiseResponseArray[2].data.reduce((providersObject, currentProvider) => {
       if (currentProvider.monetization_types.includes('flatrate')) {
         providersObject[currentProvider.id] = {
@@ -53,9 +54,6 @@ class MediaDetail extends React.Component {
       }
       return providersObject;
     }, {});
-
-    console.log(streamingProviders);
-    console.log(promiseResponseArray[2]);
 
     this.setState({
       details: itemDetail,
@@ -97,7 +95,7 @@ class MediaDetail extends React.Component {
     });
 
     const streamLinks = details.offers ? details.offers.filter(offer => {
-      return offer.monetization_type === 'flatrate' && this.state.userSubscriptions.includes(offer.provider_id) && offer.presentation_type === 'hd';
+      return offer.monetization_type === 'flatrate' && offer.presentation_type === 'hd';
     })
       .map(offer => {
         return (
@@ -119,7 +117,7 @@ class MediaDetail extends React.Component {
           <div className="col-lg-4 middle-column">
             <h4>Clips and trailers:</h4>
             <div className="clips-holder">{clips.length ? clips : 'None'}</div>
-            <h4>Streaming options:</h4>
+            {streamLinks.length ? <h4>Streaming options:</h4> : ''}
             {streamLinks}
           </div>
           <div className="col-lg-4 right-column"><h4>User Reviews:</h4>{reviews}</div>

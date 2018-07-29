@@ -1,6 +1,7 @@
 import React from 'react';
 // import StarRating from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
 import './SearchResult.css';
@@ -55,9 +56,9 @@ class SearchResult extends React.Component {
               {/* <StarRating name="mediaRating" starCount={5} value={rating} editing={false} /> */}
               <p>{media.short_description}</p>
             </div>
-            <Link to={`/detail/${this.props.media.object_type}/${this.props.media.id}`}>Detail</Link>
           </div>
-          <button disabled={this.state.queued} className={`btn ${this.state.queued ? 'btn-success' : 'btn-primary'} addToQueue`} onClick={this.addToQueue}>{this.state.queued ? 'Added!' : 'Add to Queue'}</button>
+          <Link to={`/detail/${this.props.media.object_type}/${this.props.media.id}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <Button block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'} onClick={this.addToQueue}>{this.state.queued ? 'Added!' : 'Add to Queue'}</Button>
         </div>
       </div>
     );
