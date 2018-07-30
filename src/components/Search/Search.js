@@ -1,7 +1,8 @@
 import React from 'react';
 import jw from '../../justwatchApi/justwatch';
 import SearchResults from '../SearchResults/SearchResults';
-
+import fbSubs from '../../firebaseReqs/subs';
+import { Checkbox } from 'react-bootstrap';
 import './Search.css';
 
 class Search extends React.Component {
@@ -9,14 +10,29 @@ class Search extends React.Component {
   state = {
     searchText: '',
     searchResults: [],
+    mySubscriptions: [],
+    searching: true,
+    filterForSubs: false,
   }
 
   searchTextChange = (e) => {
     this.setState({searchText: e.target.value});
   };
 
+  isStream = (offer) => {
+    return offer.monetization_type === 'flatrate' && this.state.mySubscriptions.includes(offer.provider_id);
+  };
+
+  hasStream = (item) => {
+    return item.offers ? item.offers.some(this.isStream) : false;
+  };
+
   setSearchResults = (apiResponse) => {
-    this.setState({ searchResults: apiResponse.data.items.filter(item => { return item.poster; }) });
+    let searchResults = apiResponse.data.items.filter(item => { return item.poster; });
+    if (this.state.filterForSubs) {
+      searchResults = searchResults.filter(this.hasStream);
+    }
+    this.setState({ searchResults: searchResults });
   };
 
   searchJW = (e) => {
@@ -31,6 +47,19 @@ class Search extends React.Component {
         console.error(err);
         this.setState({ searching: false });
       });
+  }
+
+  filterChange = (e) => {
+    this.setState({ filterForSubs: e.target.checked });
+  }
+
+  componentDidMount() {
+    fbSubs.getMySubscriptions()
+      .then(subs => {
+        const providerArray = Object.values(subs.data).map(sub => { return sub.providerId; });
+        this.setState({ mySubscriptions: providerArray, searching: false });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -55,6 +84,7 @@ class Search extends React.Component {
           </div>
           <div className="form-group">
             <div className="col-sm-offset-5 col-sm-6">
+              <Checkbox onChange={this.filterChange}>Show only results on my subscriptions</Checkbox>
               <button
                 type="submit"
                 className="btn btn-default col-xs-12"
