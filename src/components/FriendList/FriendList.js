@@ -5,6 +5,7 @@ import CurrentFriend from '../CurrentFriend/CurrentFriend';
 import FriendSearchResult from '../FriendSearchResult/FriendSearchResult';
 import PendingFriend from '../PendingFriend/PendingFriend';
 import fbFriends from '../../firebaseReqs/friends';
+import UserOptions from '../UserOptions/UserOptions';
 import './FriendList.css';
 
 class FriendList extends React.Component {
@@ -140,7 +141,7 @@ class FriendList extends React.Component {
             {friendSearchResultList}
           </Tab>
           <Tab eventKey={4} title="Options">
-            Options
+            <UserOptions />
           </Tab>
         </Tabs>
       </div>
