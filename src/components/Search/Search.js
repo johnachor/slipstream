@@ -84,7 +84,7 @@ class Search extends React.Component {
           </div>
           <div className="form-group">
             <div className="col-sm-offset-5 col-sm-6">
-              <Checkbox onChange={this.filterChange}>Show only results on my subscriptions</Checkbox>
+              <Checkbox checked={this.state.filterForSubs} onChange={this.filterChange}>Show only results streamable with my subscriptions</Checkbox>
               <button
                 type="submit"
                 className="btn btn-default col-xs-12"
