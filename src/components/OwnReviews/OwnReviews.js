@@ -20,7 +20,10 @@ class OwnReviews extends React.Component {
             queueItem[1].firebaseId = queueItem[0];
             queueArray.push(queueItem[1]);
             return queueArray;
-          }, []);
+          }, [])
+          .sort((a, b) => {
+            return b.reviewDate - a.reviewDate;
+          });
 
         this.setState({reviews: reviewedItems});
       })

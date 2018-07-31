@@ -18,6 +18,8 @@ class FriendList extends React.Component {
     searchText: '',
   }
 
+  // this function determines whether there is already an extant friend request between oneself and the target uid
+  // this is used to prevent duplicates from being created
   checkIfRequested = (friendUid) => {
     const currentUid = firebase.auth().currentUser.uid;
     return this.props.friendRequests.find(friendReq => {
@@ -25,6 +27,7 @@ class FriendList extends React.Component {
     });
   };
 
+  // updates state on new props
   updateFriendsList = () => {
     const currentFriends = this.props.users.filter(user => { return this.props.friendUids.includes(user.uid); });
     const pendingRequests = this.props.friendRequests.filter(req => {
@@ -40,6 +43,7 @@ class FriendList extends React.Component {
     });
   }
 
+  // the following 4 methods are passed into the relevant child components as props
   deleteFriend = (uid) => {
     const firebaseIdToDelete = this.props.friendRequests.find(req => {
       return req.senderUid === uid || req.receiverUid === uid;
@@ -67,10 +71,19 @@ class FriendList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  confirmFriendRequest = (firebaseId, requestObject) => {
+    fbFriends.updateRequest(firebaseId, requestObject)
+      .then(this.props.updater)
+      .catch(err => console.error(err));
+  }
+
+  // on new props (parent state change) change state
   componentWillReceiveProps() {
     this.updateFriendsList();
   }
 
+  // filters the array of available non-friends for the search term
+  // username can partial match, email must match exactly
   searchUsers = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -83,12 +96,6 @@ class FriendList extends React.Component {
 
   searchTextChange = (e) => {
     this.setState({ searchText: e.target.value });
-  }
-
-  confirmFriendRequest = (firebaseId, requestObject) => {
-    fbFriends.updateRequest(firebaseId, requestObject)
-      .then(this.props.updater)
-      .catch(err => console.error(err));
   }
 
   render() {

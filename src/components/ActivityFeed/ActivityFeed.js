@@ -23,10 +23,10 @@ class ActivityFeed extends React.Component {
           .filter(review => {
             return this.props.friendUids.includes(review.ownerUid) && review.isReviewed === true;
           })
-          // sort by date
-          .sort((a, b) => { return a.reviewDate - b.reviewDate; })
-          // reverse to get descending date
-          .reverse();
+          // sort by date descending
+          .sort((a, b) => { return b.reviewDate - a.reviewDate; })
+          // limit to last 20 so we don't get a massive page that scrolls forever -- may include pagination later
+          .slice(0,20);
         this.setState({ friendReviews: friendReviews });
       })
       .catch(err => console.error(err));
@@ -37,10 +37,10 @@ class ActivityFeed extends React.Component {
   }
 
   render() {
-    const { friends } = this.props;
     const reviews = this.state.friendReviews.map(review => {
+      const reviewer = this.props.friends.find(friend => { return friend.uid === review.ownerUid; });
       return (
-        <FriendReview key={review.firebaseId} review={review} friends={friends}/>
+        <FriendReview key={review.firebaseId} review={review} reviewer={reviewer}/>
       );
     });
 

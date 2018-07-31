@@ -23,6 +23,8 @@ class Search extends React.Component {
     return offer.monetization_type === 'flatrate' && this.state.mySubscriptions.includes(offer.provider_id);
   };
 
+  // returns true if a media item's "offers" array contains any flatrate offers
+  // from providers the current user is subscribed to
   hasStream = (item) => {
     return item.offers ? item.offers.some(this.isStream) : false;
   };

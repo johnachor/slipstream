@@ -12,6 +12,7 @@ class FriendReview extends React.Component {
     queued: false,
   }
 
+  // revert queue object to initial unreviewed state, strip firebase ID, and change user to self, then add to queue
   addToQueue = () => {
     const reviewToAdd = { ...this.props.review };
     delete reviewToAdd.firebaseId;
@@ -30,11 +31,9 @@ class FriendReview extends React.Component {
     this.props.history.push(`/details/${review.mediaType}/${review.mediaId}`);
   }
 
-  // TODO: find reviewer user object in parent component and pass in as prop instead of doing the logic in here
   render() {
 
-    const { review } = this.props;
-    const reviewer = this.props.friends.find(friend => { return friend.uid === review.ownerUid; });
+    const { review, reviewer } = this.props;
     return (
       <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0">
         <div className="col-xs-5 posterHolder">
