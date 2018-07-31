@@ -1,62 +1,55 @@
 import React from 'react';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import fbAuth from '../../firebaseReqs/auth';
-
 import './NavBar.css';
 import Logo from './img/logo.png';
 
 class NavBar extends React.Component {
   render() {
 
-    const {authed} = this.props;
+    const { authed } = this.props;
+
+    const inLinksLeft = (
+      <Nav>
+        <NavItem eventKey={1}>
+          <Link to="/dashboard">Dashboard</Link>
+        </NavItem>
+        <NavItem eventKey={2}>
+          <Link to="/queue">My Queue</Link>
+        </NavItem>
+        <NavItem eventKey={3}>
+          <Link to="/myreviews">My Reviews</Link>
+        </NavItem>
+        <NavItem eventKey={4}>
+          <Link to="/search">Search</Link>
+        </NavItem>
+      </Nav>
+    );
+
+    const inLinksRight = (
+      <Nav pullRight>
+        <NavItem eventKey={5}>
+          <Button bsStyle="warning" onClick={fbAuth.logoutUser}>Logout</Button>
+        </NavItem>
+      </Nav>
+    );
 
     return (
-      <div className="NavBar">
-        <nav className="navbar navbar-inverse navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <Link to="/" className="navbar-brand"><img alt="Brand logo" src={Logo} /></Link>
-            </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              {
-                authed ? (
-                  <ul className="nav navbar-nav navbar-right">
-                    <li>
-                      <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                      <Link to="/queue">My Queue</Link>
-                    </li>
-                    <li>
-                      <Link to="/myreviews">My Reviews</Link>
-                    </li>
-                    <li>
-                      <Link to="/search">Search</Link>
-                    </li>
-                    <li>
-                      <button className="btn btn-default logoutButton" onClick={fbAuth.logoutUser}>Logout</button>
-                    </li>
-                  </ul>
-                ) : (
-                  <ul className="nav navbar-nav navbar-right">
-                    <li>
-                      <Link to="/login">Login</Link>
-                    </li>
-                  </ul>
-                )
-              }
-            </div>
-          </div>
-        </nav>
-      </div>
+      <Navbar fixedTop inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/"><img alt="Brand logo" src={Logo} /></Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          {inLinksLeft}
+          {inLinksRight}
+        </Navbar.Collapse>
+      </Navbar>
     );
-  }
-}
+  };
+};
 
 export default NavBar;
