@@ -25,7 +25,7 @@ class MediaDetail extends React.Component {
     const mediaType = itemDetail.object_type;
     const mediaId = itemDetail.id;
 
-    // grab all queue items and filter for reviews for this media
+    // grab all queue items and filter for reviews for this media item
     const userReviews = Object.values(promiseResponseArray[1].data)
       .filter(queueItem => { return queueItem.isReviewed === true && queueItem.mediaId === mediaId && queueItem.mediaType === mediaType; })
       .sort((a, b) => {
@@ -35,6 +35,7 @@ class MediaDetail extends React.Component {
 
     let overallRating = 0;
     // set overall rating as average of all reviews of this media item, rounded to the nearest whole number
+    // overall rating display is not currently implemented
     if (userReviews.length) {
       overallRating = Math.round(userReviews.reduce((total, currentReview) => {
         return total + currentReview.starRating;
@@ -42,6 +43,7 @@ class MediaDetail extends React.Component {
     }
 
     // make array of numbers representing streaming providers the current user is subscribed to
+    // this will be used to display relevant streams before nonrelevant ones
     const userSubscriptions = Object.values(promiseResponseArray[3].data).map(sub => { return sub.providerId; });
 
     // make easier-to-read object with provider id as key names and properties for icon and name, also show flatrate only

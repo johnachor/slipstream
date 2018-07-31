@@ -1,5 +1,4 @@
 import React from 'react';
-// import StarRating from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import firebase from 'firebase';
@@ -9,7 +8,6 @@ import './SearchResult.css';
 class SearchResult extends React.Component {
 
   state = {
-    // rating: 3,
     queued: this.props.queued || false,
   }
 
@@ -42,9 +40,6 @@ class SearchResult extends React.Component {
 
   render() {
     const { media } = this.props;
-    // const { rating } = this.state;
-
-    if (media.poster) media.poster = media.poster.replace('{profile}', 's592');
 
     return (
       <div className="col-xs-12 col-sm-6 col-md-4">

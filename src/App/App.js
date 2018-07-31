@@ -5,7 +5,6 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import MediaDetail from '../components/MediaDetail/MediaDetail';
-// import MediaReviews from '../components/MediaReviews/MediaReviews';
 import NavBar from '../components/NavBar/NavBar';
 import OwnReviews from '../components/OwnReviews/OwnReviews';
 import Queue from '../components/Queue/Queue';
@@ -16,6 +15,7 @@ import firebaseInit from '../firebaseReqs/initialize';
 
 firebaseInit();
 
+// Private Routes only accessible when user is authenticated, otherwise redirect to login route
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   return (
     <Route
@@ -33,6 +33,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   );
 };
 
+// Public Route only accessible when not authenticated, otherwise redirect to dashboard
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   return (
     <Route
@@ -56,6 +57,7 @@ class App extends Component {
     authed: false,
   }
 
+  // add event listener for firebase auth state change for routing
   componentDidMount() {
     this.authListener = firebase.auth().onAuthStateChanged((user) => {
       this.setState({ authed: user ? true : false });

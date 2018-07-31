@@ -15,12 +15,14 @@ class UserOptions extends React.Component {
   }
 
   shapeData = (promiseResponseArray) => {
+    // adds firebase key name as key on object and returns array of objects
     const mySubs = Object.entries(promiseResponseArray[1].data).reduce((subs, currentSub) => {
       currentSub[1].firebaseId = currentSub[0];
       subs.push(currentSub[1]);
       return subs;
     }, []);
 
+    // creates a simplified provider object with provider IDs as key names
     const providers = promiseResponseArray[0].data.reduce((providersObject, currentProvider) => {
       if (currentProvider.monetization_types.includes('flatrate')) {
         providersObject[currentProvider.id] = {
@@ -30,6 +32,7 @@ class UserOptions extends React.Component {
       }
       return providersObject;
     }, {});
+
     this.setState({
       subscriptions: mySubs,
       providers: providers,
