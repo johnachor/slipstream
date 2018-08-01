@@ -41,6 +41,8 @@ class SearchResult extends React.Component {
   render() {
     const { media } = this.props;
 
+    media.poster = media.poster.replace('{profile}', 's592');
+
     return (
       <div className="col-xs-12 col-sm-6 col-md-4">
         <div className="SearchResult">
