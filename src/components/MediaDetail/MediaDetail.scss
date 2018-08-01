@@ -43,8 +43,13 @@
     }
   }
   
-  .providerLink img {
-    border-radius: 10px;
-    overflow: hidden;
+  .providerLink {
+
+    margin: 5px;
+
+    img {
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 }
