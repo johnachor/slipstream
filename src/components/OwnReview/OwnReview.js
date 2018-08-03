@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
 import './OwnReview.css';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 
 class OwnReview extends React.Component {
@@ -24,7 +24,7 @@ class OwnReview extends React.Component {
               <p>{media.reviewText}</p>
             </div>
           </div>
-          <Link to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <LinkContainer to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
         </div>
       </div>
     );
