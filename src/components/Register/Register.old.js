@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
 import fbAuth from '../../firebaseReqs/auth';
 import fbUsers from '../../firebaseReqs/users';
 import './Register.css';
@@ -86,52 +85,82 @@ class Register extends React.Component {
         <div id="login-form">
           <h1 className="text-center">Register</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-            <FormGroup>
-              <ControlLabel className="col-sm-4">
+            <div className="form-group">
+              <label htmlFor="inputUsername" className="col-sm-4 control-label">
                 Username
-              </ControlLabel>
-              <FormControl
-                type="text"
-                value={user.username}
-                placeholder="Username"
-                onChange={this.usernameChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel className="col-sm-4">
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputUsername"
+                  placeholder="Username"
+                  value={user.username}
+                  onChange={this.usernameChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputEmail" className="col-sm-4 control-label">
                 Email
-              </ControlLabel>
-              <FormControl
-                type="text"
-                value={user.email}
-                placeholder="Email address"
-                onChange={this.emailChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel className="col-sm-4">
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="inputEmail"
+                  placeholder="Email"
+                  value={user.email}
+                  onChange={this.emailChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputPassword" className="col-sm-4 control-label">
                 Password
-              </ControlLabel>
-              <FormControl
-                type="password"
-                value={user.password}
-                placeholder="Password"
-                onChange={this.passwordChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel className="col-sm-4">
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="inputPassword"
+                  placeholder="Password"
+                  value={user.password}
+                  onChange={this.passwordChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmPassword" className="col-sm-4 control-label">
                 Confirm Password
-              </ControlLabel>
-              <FormControl
-                type="password"
-                value={user.confirmPassword}
-                placeholder="Confirm Password"
-                onChange={this.confirmPasswordChange}
-              />
-            </FormGroup>
-            <Button onClick={this.registerClickEvent}>Register</Button>
-            <Link to="/login">Looking for the login page?</Link>
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={user.confirmPassword}
+                  onChange={this.confirmPasswordChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-sm-offset-5 col-sm-6">
+                <button
+                  type="submit"
+                  className="btn btn-default col-xs-12"
+                  onClick={this.registerClickEvent}
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-sm-offset-2 col-sm-10 text-right">
+                <Link to="/login">Looking for the login page?</Link>
+              </div>
+            </div>
           </form>
         </div>
       </div>

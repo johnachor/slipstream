@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
 import fbAuth from '../../firebaseReqs/auth';
 import './Login.css';
 
@@ -41,52 +42,30 @@ class Login extends React.Component {
         <div id="login-form">
           <h1 className="text-center">Login</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-            <div className="form-group">
-              <label htmlFor="inputEmail" className="col-sm-4 control-label">
+            <FormGroup>
+              <ControlLabel className="col-sm-4">
                 Email
-              </label>
-              <div className="col-sm-8">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="inputEmail"
-                  placeholder="Email"
-                  value={user.email}
-                  onChange={this.emailChange}
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="inputPassword" className="col-sm-4 control-label">
+              </ControlLabel>
+              <FormControl
+                type="text"
+                value={user.email}
+                placeholder="Email address"
+                onChange={this.emailChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel className="col-sm-4">
                 Password
-              </label>
-              <div className="col-sm-8">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="inputPassword"
-                  placeholder="Password"
-                  value={user.password}
-                  onChange={this.passwordChange}
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="col-sm-offset-5 col-sm-6">
-                <button
-                  type="submit"
-                  className="btn btn-default col-xs-12"
-                  onClick={this.loginClickEvent}
-                >
-                  Login
-                </button>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10 text-right">
-                <Link to="/register">Register a new account</Link>
-              </div>
-            </div>
+              </ControlLabel>
+              <FormControl
+                type="password"
+                value={user.password}
+                placeholder="Password"
+                onChange={this.passwordChange}
+              />
+            </FormGroup>
+            <Button onClick={this.loginClickEvent}>Login</Button>
+            <Link to="/register">Register a new account</Link>
           </form>
         </div>
       </div>
