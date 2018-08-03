@@ -130,8 +130,8 @@ class Register extends React.Component {
                 onChange={this.confirmPasswordChange}
               />
             </FormGroup>
-            <Button onClick={this.registerClickEvent}>Register</Button>
-            <Link to="/login">Looking for the login page?</Link>
+            <Button className="col-sm-6 col-sm-offset-5" type="submit" onClick={this.registerClickEvent}>Register</Button>
+            <Link className="col-sm-4 col-sm-offset-7 text-right" to="/login">Looking for the login page?</Link>
           </form>
         </div>
       </div>

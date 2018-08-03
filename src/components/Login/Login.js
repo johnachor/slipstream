@@ -47,6 +47,7 @@ class Login extends React.Component {
                 Email
               </ControlLabel>
               <FormControl
+                className="col-sm-8"
                 type="text"
                 value={user.email}
                 placeholder="Email address"
@@ -64,8 +65,8 @@ class Login extends React.Component {
                 onChange={this.passwordChange}
               />
             </FormGroup>
-            <Button onClick={this.loginClickEvent}>Login</Button>
-            <Link to="/register">Register a new account</Link>
+            <Button className="col-xs-6 col-xs-offset-5" type="submit" onClick={this.loginClickEvent}>Login</Button>
+            <Link className="col-sm-4 col-sm-offset-7 text-right" to="/register">Register a new account</Link>
           </form>
         </div>
       </div>
