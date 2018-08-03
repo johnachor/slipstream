@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
 import './FriendReview.css';
@@ -46,7 +46,7 @@ class FriendReview extends React.Component {
           <p>{review.reviewText}</p>
         </div>
         <div className="col-xs-7 queueButtonHolder">
-          <Link to={`/detail/${review.mediaType}/${review.mediaId}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <LinkContainer to={`/detail/${review.mediaType}/${review.mediaId}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
           <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to my queue'}</Button>
         </div>
       </div>

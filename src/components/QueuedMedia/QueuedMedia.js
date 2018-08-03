@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
 import './QueuedMedia.css';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 
 class QueuedMedia extends React.Component {
@@ -64,7 +64,7 @@ class QueuedMedia extends React.Component {
               />
             </div>
           </div>
-          <Link to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <LinkContainer to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
           <Button className="bottomButton" block bsStyle="primary" onClick={this.reviewItem}>Submit Review</Button>
         </div>
       </div>

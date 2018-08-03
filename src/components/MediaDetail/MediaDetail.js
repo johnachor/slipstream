@@ -25,13 +25,12 @@ class MediaDetail extends React.Component {
     const mediaType = itemDetail.object_type;
     const mediaId = itemDetail.id;
 
-    // grab all queue items and filter for reviews for this media item
+    // filter queue items for reviews for this media item and sort them in reverse chronological order
     const userReviews = Object.values(promiseResponseArray[1].data)
       .filter(queueItem => { return queueItem.isReviewed === true && queueItem.mediaId === mediaId && queueItem.mediaType === mediaType; })
       .sort((a, b) => {
-        return a.reviewDate - b.reviewDate;
-      })
-      .reverse();
+        return b.reviewDate - a.reviewDate;
+      });
 
     let overallRating = 0;
     // set overall rating as average of all reviews of this media item, rounded to the nearest whole number
@@ -48,12 +47,10 @@ class MediaDetail extends React.Component {
 
     // make easier-to-read object with provider id as key names and properties for icon and name, also show flatrate only
     const streamingProviders = promiseResponseArray[2].data.reduce((providersObject, currentProvider) => {
-      if (currentProvider.monetization_types.includes('flatrate')) {
-        providersObject[currentProvider.id] = {
-          icon: currentProvider.icon_url.replace('{profile}', 's100'),
-          name: currentProvider.clear_name,
-        };
-      }
+      providersObject[currentProvider.id] = {
+        icon: currentProvider.icon_url.replace('{profile}', 's100'),
+        name: currentProvider.clear_name,
+      };
       return providersObject;
     }, {});
 
@@ -117,10 +114,10 @@ class MediaDetail extends React.Component {
             <p>{details.short_description}</p>
           </div>
           <div className="col-lg-4 middle-column">
+            <h4>Streaming options:</h4>
+            {streamLinks.length ? streamLinks : <h5>None</h5>}
             <h4>Clips and trailers:</h4>
             <div className="clips-holder">{clips.length ? clips : 'None'}</div>
-            {streamLinks.length ? <h4>Streaming options:</h4> : ''}
-            {streamLinks}
           </div>
           <div className="col-lg-4 right-column"><h4>User Reviews:</h4>{reviews}</div>
         </div>

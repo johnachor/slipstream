@@ -19,6 +19,10 @@
     font-size: 3rem;
   }
 
+  .btn-block+.btn-block {
+    margin: 0;
+  }
+
   h4 {
     text-overflow: ellipsis;
     margin: 5px 0 0 0;

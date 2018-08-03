@@ -10,8 +10,12 @@
     font-size: 3rem;
   }
 
-  button, .bottomButton {
+  button, a.btn {
     border-radius: 0;
+    margin: 0;
+  }
+
+  .btn-block+.btn-block {
     margin: 0;
   }
 

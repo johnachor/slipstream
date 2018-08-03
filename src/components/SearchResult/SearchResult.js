@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
@@ -41,6 +41,8 @@ class SearchResult extends React.Component {
   render() {
     const { media } = this.props;
 
+    media.poster = media.poster.replace('{profile}', 's592');
+
     return (
       <div className="col-xs-12 col-sm-6 col-md-4">
         <div className="SearchResult">
@@ -52,7 +54,7 @@ class SearchResult extends React.Component {
               <p>{media.short_description}</p>
             </div>
           </div>
-          <Link to={`/detail/${this.props.media.object_type}/${this.props.media.id}`}><Button block bsStyle='info'>See Details</Button></Link>
+          <LinkContainer to={`/detail/${this.props.media.object_type}/${this.props.media.id}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
           <Button block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'} onClick={this.addToQueue}>{this.state.queued ? 'Added!' : 'Add to Queue'}</Button>
         </div>
       </div>
