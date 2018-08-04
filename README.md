@@ -20,4 +20,6 @@ The deployed site is available at http://slipstream.john-achor.com.
 # How to use:
 Upon accessing the site for the first time, you will be presented with a login prompt.  Use the `Register a new account` link to head over to the registration form.  Upon filling out the form, click `Register` and you should be automatically logged in.  On future logins, the email and password you provided will be used.
 
-Once you are logged in, you will see the app's "dashboard." From here you can access most of the app's functionality from the navbar.  The different views and their detailed explanations are listed below.
+Once you are logged in, you will see the app's main view. From here you can access most of the app's functionality from the navbar.  The different views and their detailed explanations are listed below.
+
+
