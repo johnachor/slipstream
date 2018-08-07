@@ -102,6 +102,8 @@ class MediaDetail extends React.Component {
         );
       }) : [];
 
+    const avgRatingDisplay = <StarRating name="averageStarRating" starCount={5} value={this.state.overallRating} editing={false} />;
+
     return details.title ? (
       <div className="MediaDetail">
         <div className="container">
@@ -119,7 +121,14 @@ class MediaDetail extends React.Component {
             <h4>Clips and trailers:</h4>
             <div className="clips-holder">{clips.length ? clips : 'None'}</div>
           </div>
-          <div className="col-lg-4 right-column"><h4>User Reviews:</h4>{reviews}</div>
+          <div className="col-lg-4 right-column">
+            <h4>Average user rating:</h4>
+            <div className="avgRating">
+              {this.state.overallRating === 0 ? 'No reviews yet' : avgRatingDisplay}
+            </div>
+            {reviews.length ? <h4>User Reviews:</h4> : ''}
+            {reviews}
+          </div>
         </div>
       </div>
     ) : (<h1>Retrieving details, please wait...</h1>);

@@ -52,4 +52,10 @@
       overflow: hidden;
     }
   }
+
+  .avgRating {
+    .dv-star-rating i {
+      font-size: 3rem;
+    }
+  }
 }
