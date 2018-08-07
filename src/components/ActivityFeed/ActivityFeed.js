@@ -2,6 +2,7 @@ import React from 'react';
 import fbReviews from '../../firebaseReqs/queue';
 import fbComments from '../../firebaseReqs/comments';
 import FriendReview from '../FriendReview/FriendReview';
+import firebase from 'firebase';
 import './ActivityFeed.css';
 
 class ActivityFeed extends React.Component {
@@ -21,9 +22,9 @@ class ActivityFeed extends React.Component {
             acc.push(kvp[1]);
             return acc;
           }, [])
-          // filter for reviews written by friends
+          // filter for reviews written by friends or self
           .filter(review => {
-            return this.props.friendUids.includes(review.ownerUid) && review.isReviewed === true;
+            return (this.props.friendUids.includes(review.ownerUid) || review.ownerUid === firebase.auth().currentUser.uid) && review.isReviewed === true;
           })
           // sort by date descending
           .sort((a, b) => { return b.reviewDate - a.reviewDate; })
