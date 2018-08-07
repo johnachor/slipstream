@@ -28,7 +28,16 @@ Once you are logged in, you will see the app's main view. From here you can acce
 
 ### Activity Feed
 
+In the Activity Feed, you can see a reverse chronological timeline of reviews written by friends.  From each review, you have the option of checking out the detailed view or adding the media item in question to your own queue.
+
 ### Friends List and Options
+
+On the right side of the dashboard view (or at the bottom on mobile) is the friends list and user options.  By default, the tab containing the list of existing friends is selected.
+
+- `Friends` tab: Shows current friends and allows to delete friend connections.
+- `Pending` tab: Shows incoming friend requests, if any, and allows to accept or decline requests.
+- `Find` tab: Allows the user to search for users by username or email address and send friend requests.  The search query will return any matching username (insensitive of spaces and letter case), but will only return an email match on an exact match.  Users with whom the current user is already friends or has a pending friend request are not shown in search results.
+- `Options` tab: Allows the user to add and remove streaming service subscriptions from a full list of available providers.  This information is used to filter search results.
 
 ## My Queue
 
@@ -38,4 +47,4 @@ Once you are logged in, you will see the app's main view. From here you can acce
 
 ## Item Detail
 
-Generally not directly accessible, this view is used whenever the "See item detail" button is clicked on a media item in any of the other views.
+Generally not directly accessible, this view is used whenever the `See Details` button is clicked on a media item in any of the other views.
