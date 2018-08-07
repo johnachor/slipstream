@@ -45,7 +45,7 @@ class ActivityFeed extends React.Component {
     });
 
     return (
-      <div className="ActivityFeed">
+      <div className="ActivityFeed text-center">
         {reviews}
       </div>
     );

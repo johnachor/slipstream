@@ -35,19 +35,31 @@ class FriendReview extends React.Component {
 
     const { review, reviewer } = this.props;
     return (
-      <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0">
-        <div className="col-xs-5 posterHolder">
-          <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
+      <div className="reviewHolder">
+        <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <div className="col-xs-4 col-sm-2 posterHolder">
+            <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
+          </div>
+          <div className="col-xs-8 col-sm-10 reviewBody">
+            <h4>{reviewer ? reviewer.username : ''} reviewed </h4>
+            <h4>{review.title}</h4>
+            <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
+          </div>
+          <div className="col-xs-8 col-sm-10 queueButtonHolder">
+            <LinkContainer className="col-xs-6" to={`/detail/${review.mediaType}/${review.mediaId}`}><Button bsStyle='info'>See Details</Button></LinkContainer>
+            <Button className="col-xs-6" onClick={this.addToQueue} disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to queue'}</Button>
+          </div>
         </div>
-        <div className="col-xs-7 reviewBody">
-          <h4>{reviewer ? reviewer.username : ''} reviewed </h4>
-          <h4>{review.title}</h4>
-          <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
-          <p>{review.reviewText}</p>
-        </div>
-        <div className="col-xs-7 queueButtonHolder">
-          <LinkContainer to={`/detail/${review.mediaType}/${review.mediaId}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
-          <Button onClick={this.addToQueue} block disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to my queue'}</Button>
+        <div className="commentHolder col-xs-12 col-sm-10 col-md-8">
+          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+            <p><b>{reviewer ? reviewer.username : ''}: </b>{review.reviewText}</p>
+          </div>
+          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+            <p><b>{reviewer ? reviewer.username : ''}: </b>{review.reviewText}</p>
+          </div>
+          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+            <p><b>{reviewer ? reviewer.username : ''}: </b>{review.reviewText}</p>
+          </div>
         </div>
       </div>
     );
