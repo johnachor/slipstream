@@ -28,7 +28,7 @@ Once you are logged in, you will see the app's main view. From here you can acce
 
 ### Activity Feed
 
-In the Activity Feed, you can see a reverse chronological timeline of reviews written by friends.  From each review, you have the option of checking out the detailed view or adding the media item in question to your own queue.
+In the Activity Feed, you can see a reverse chronological timeline of reviews written by friends.  From each review, you have the option of adding comments, checking out the detailed view, or adding the media item in question to your own queue.
 
 ### Friends List and Options
 

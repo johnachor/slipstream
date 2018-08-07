@@ -69,5 +69,13 @@
       "uid": "fakeUser1",
       "providerId": 8
     }
+  },
+  "reviewComments": {
+    "comment1": {
+      "commenterUid": "",
+      "reviewId": "",
+      "commentText": "",
+      "commentDate": 0
+    }
   }
 }

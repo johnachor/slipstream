@@ -1,6 +1,6 @@
 .FriendReview {
 
-  .btn-block {
+  .btn {
     border-radius: 0;
   }
 
@@ -8,7 +8,7 @@
     max-width: 100%;
   }
 
-  border-radius: 10px;
+  border-radius: 10px 10px 0 10px;
   box-shadow: 0 5px 5px black;
   background-color: white;
   margin: 10px;
@@ -51,3 +51,28 @@
     text-decoration: none;
   }
 }
+
+.commentHolder {
+  padding: 0;
+  margin: 0;
+}
+
+.reviewComment {
+  float: right;
+  border-radius: 0;
+  background-color: white;
+  margin-right: -10px;
+  margin-top: -10px;
+  overflow: auto;
+  box-shadow: 0 5px 5px black;
+  text-align: left;
+
+  .form-group {
+    margin-top: 10px;
+  }
+}
+
+.reviewComment:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
