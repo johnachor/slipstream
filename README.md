@@ -41,10 +41,22 @@ On the right side of the dashboard view (or at the bottom on mobile) is the frie
 
 ## My Queue
 
+This view displays the items in the current user's queue.  In addition to being able to access the item's detailed view, each individual queue item can be removed from the queue or reviewed.  In order to submit a review, the user must choose a star rating. However, entering review text is optional.
+
 ## My Reviews
 
+This view displays the current user's previously written reviews and provides the option to delete individual reviews.
+
 ## Search
+
+This view allows the user to search the JustWatch database using a provided search string.  If desired, the user can also choose to show only search results which can be streamed for a flat rate on one of the services to which the user has indicated an existing subscription in user options.  Search results can be added to the current user's queue.
 
 ## Item Detail
 
 Generally not directly accessible, this view is used whenever the `See Details` button is clicked on a media item in any of the other views.
+
+This view contains three sections.  
+
+- The first displays the media's title, rating, release year, length (minutes for movies, number of seasons if TV show), poster, and short description.
+- The second displays any flatrate streaming options as well as any known relevant YouTube clips such as trailers.
+- The third column displays reviews of this media written by other users.  Only reviews with text are included in the list, but the average score at the top includes all user submitted ratings.
