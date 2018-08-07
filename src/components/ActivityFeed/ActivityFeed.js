@@ -31,6 +31,7 @@ class ActivityFeed extends React.Component {
           .slice(0, 20);
         const allComments = Object.values(responseArray[1].data);
         this.setState({ friendReviews: friendReviews, comments: allComments });
+        this.forceUpdate();
       })
       .catch(err => console.error(err));
   }
@@ -41,15 +42,29 @@ class ActivityFeed extends React.Component {
 
   render() {
     const reviews = this.state.friendReviews.map(review => {
-      const reviewer = this.props.friends.find(friend => { return friend.uid === review.ownerUid; });
+      const reviewer = this.props.users.find(friend => { return friend.uid === review.ownerUid; });
       const relevantComments = this.state.comments.filter(comment => {
         return comment.reviewId === review.firebaseId;
       })
+        .map(comment => {
+          const commenter = this.props.users.find(friend => { return friend.uid === comment.commenterUid; });
+          comment.username = commenter.username;
+          return comment;
+        })
         .sort((a, b) => {
           return a.commentDate - b.commentDate;
         });
+      if (review.reviewText) {
+        relevantComments.unshift({
+          commentDate: 0,
+          commentText: review.reviewText,
+          commenterUid: review.ownerUid,
+          reviewId: review.firebaseId,
+          username: this.props.users.find(user => { return user.uid === review.ownerUid; }).username,
+        });
+      }
       return (
-        <FriendReview key={review.firebaseId} review={review} reviewer={reviewer} comments={relevantComments}/>
+        <FriendReview key={review.firebaseId} review={review} reviewer={reviewer} comments={relevantComments} updater={this.getFriendActivities}/>
       );
     });
 

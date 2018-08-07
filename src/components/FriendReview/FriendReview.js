@@ -1,16 +1,18 @@
 import React from 'react';
 import StarRating from 'react-star-rating-component';
-import { Button } from 'react-bootstrap';
+import { Button, FormControl, FormGroup, InputGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import firebase from 'firebase';
 import fbQueue from '../../firebaseReqs/queue';
 import './FriendReview.css';
+import fbComments from '../../firebaseReqs/comments';
 
 class FriendReview extends React.Component {
 
   state = {
     queued: false,
     comments: [],
+    newCommentText: '',
   }
 
   // revert queue object to initial unreviewed state, strip firebase ID, and change user to self, then add to queue
@@ -34,12 +36,6 @@ class FriendReview extends React.Component {
 
   setComments = () => {
     const comments = [...this.props.comments];
-    comments.unshift({
-      commentDate: 0,
-      commentText: this.props.review.reviewText,
-      commenterUid: this.props.review.ownerUid,
-      reviewId: this.props.review.firebaseId,
-    });
     this.setState({ comments: comments });
   }
 
@@ -47,9 +43,42 @@ class FriendReview extends React.Component {
     this.setComments();
   }
 
+  newCommentTextChange = (e) => {
+    this.setState({ newCommentText: e.target.value });
+  };
+
+  addComment = (e) => {
+    e.preventDefault();
+
+    if (this.state.newCommentText.length) {
+      const newComment = {
+        commenterUid: firebase.auth().currentUser.uid,
+        commentDate: Date.now(),
+        commentText: this.state.newCommentText,
+        reviewId: this.props.review.firebaseId,
+      };
+
+      // clear comment entry field
+      this.setState({ newCommentText: '' });
+
+      // add comment to firebase and update state of parent
+      fbComments.addComment(newComment).then(() => {
+        this.props.updater();
+      }).catch(err => console.error(err));
+    }
+  }
+
   render() {
 
     const { review, reviewer } = this.props;
+
+    const comments = this.state.comments.map(comment => {
+      return (
+        <div key={comment.commentText} className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+          <p><b>{comment.username}: </b>{comment.commentText}</p>
+        </div>
+      );
+    });
 
     return (
       <div className="reviewHolder">
@@ -68,14 +97,21 @@ class FriendReview extends React.Component {
           </div>
         </div>
         <div className="commentHolder col-xs-12 col-sm-10 col-md-8">
+          {comments}
           <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
-            <p><b>{reviewer.username}: </b>{review.reviewText}</p>
-          </div>
-          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
-            <p><b>{reviewer.username}: </b>{review.reviewText}</p>
-          </div>
-          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
-            <p><b>{reviewer.username}: </b>{review.reviewText}</p>
+            <form>
+              <FormGroup>
+                <InputGroup>
+                  <FormControl
+                    type="text"
+                    value={this.state.newCommentText}
+                    placeholder="Add a comment..."
+                    onChange={this.newCommentTextChange}
+                  />
+                  <InputGroup.Button><Button type="submit" onClick={this.addComment}>Submit</Button></InputGroup.Button>
+                </InputGroup>
+              </FormGroup>
+            </form>
           </div>
         </div>
       </div>
