@@ -14,7 +14,6 @@ class Register extends React.Component {
       confirmPassword: '',
       username: '',
     },
-    usernames: [],
   };
 
   // TODO: refactor this - single responsibility functions
@@ -28,11 +27,17 @@ class Register extends React.Component {
           usernameArray.push(user.username.toLowerCase().split(' ').join(''));
           return usernameArray;
         }, []);
+        const existingEmails = Object.values(fbReturnedUsers.data).reduce((emailArray, user) => {
+          emailArray.push(user.email.toLowerCase().split(' ').join(''));
+          return emailArray;
+        }, []);
         if (user.username.length < 6) {
           alert('Please enter a username of at least 6 characters.');
           document.getElementById('inputUsername').focus();
         } else if (user.password.length < 6) {
           alert('Passwords must be at least 6 characters in length.');
+        } else if (existingEmails.includes(user.email)) {
+          alert('Email address matches an existing account.');
         } else if (existingUsernames.includes(user.username.toLowerCase().split(' ').join(''))) {
           alert('Username already exists. Please choose another username.');
         } else if (user.password !== user.confirmPassword) {
