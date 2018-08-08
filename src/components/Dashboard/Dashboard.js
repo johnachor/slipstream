@@ -51,6 +51,11 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.getUsersAndFriends();
+    this.autoUpdate = setInterval(this.getUsersAndFriends, 15000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.autoUpdate);
   }
 
   render() {
@@ -59,7 +64,7 @@ class Dashboard extends React.Component {
         <div className="container-fluid">
           <div className="col-xs-12 col-md-9 activity-holder">
             <div className="container">
-              <ActivityFeed updater={this.getUsersAndFriends} friends={this.state.friendObjects} friendUids={this.state.friendUids} users={this.state.users} />
+              <ActivityFeed friends={this.state.friendObjects} friendUids={this.state.friendUids} users={this.state.users} />
             </div>
           </div>
           <div className="col-xs-12 col-md-3">
