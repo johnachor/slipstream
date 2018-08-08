@@ -9,6 +9,11 @@
   }
 
   border-radius: 10px 10px 0 10px;
+
+  @media screen and (max-width: 767px) {
+    border-radius: 10px 10px 0 0;
+  }
+
   box-shadow: 0 5px 5px black;
   background-color: white;
   margin: 10px;
@@ -45,6 +50,12 @@
     img {
       border-radius: 10px 0 0 10px;
     }
+
+    @media screen and (max-width: 767px) {
+      img {
+        border-radius: 10px 0 0 0;
+      }
+    }
   }
 
   a:hover {
@@ -67,6 +78,10 @@
   box-shadow: 0 5px 5px black;
   text-align: left;
 
+  p {
+    margin-top: 5px;
+  }
+
   .form-group {
     margin-top: 10px;
   }
@@ -74,5 +89,10 @@
 
 .reviewComment:last-child {
   border-radius: 0 0 10px 10px;
+
+  .btn {
+    background-color: #0CA;
+    color: white;
+  }
 }
 

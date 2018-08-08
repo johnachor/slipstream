@@ -74,7 +74,7 @@ class FriendReview extends React.Component {
 
     const comments = this.state.comments.map(comment => {
       return (
-        <div key={comment.commentText} className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+        <div key={comment.commentText} className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
           <p><b>{comment.username}: </b>{comment.commentText}</p>
         </div>
       );
@@ -98,7 +98,7 @@ class FriendReview extends React.Component {
         </div>
         <div className="commentHolder col-xs-12 col-sm-10 col-md-8">
           {comments}
-          <div className="reviewComment col-xs-8 col-xs-offset-4 col-sm-10 col-sm-offset-2">
+          <div className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
             <form>
               <FormGroup>
                 <InputGroup>
@@ -108,7 +108,7 @@ class FriendReview extends React.Component {
                     placeholder="Add a comment..."
                     onChange={this.newCommentTextChange}
                   />
-                  <InputGroup.Button><Button type="submit" onClick={this.addComment}>Submit</Button></InputGroup.Button>
+                  <InputGroup.Button><Button bsStyle="basic" type="submit" onClick={this.addComment}>Submit</Button></InputGroup.Button>
                 </InputGroup>
               </FormGroup>
             </form>
