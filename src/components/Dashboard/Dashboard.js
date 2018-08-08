@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.getUsersAndFriends();
-    this.autoUpdate = setInterval(this.getUsersAndFriends, 15000);
+    this.autoUpdate = setInterval(this.getUsersAndFriends, 60000);
   }
 
   componentWillUnmount() {
