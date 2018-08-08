@@ -1,11 +1,8 @@
 .MediaDetail {
   padding: 2rem;
-  border: 1rem black;
-  position: relative;
   transition: all 0.3s;
-  box-shadow: 0 5px 5px black;
   background: aliceblue;
-  display: block;
+  min-height: calc(100vh - 50px);
 
   .left-column {
     

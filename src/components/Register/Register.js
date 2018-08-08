@@ -31,6 +31,8 @@ class Register extends React.Component {
         if (user.username.length < 6) {
           alert('Please enter a username of at least 6 characters.');
           document.getElementById('inputUsername').focus();
+        } else if (user.password.length < 6) {
+          alert('Passwords must be at least 6 characters in length.');
         } else if (existingUsernames.includes(user.username.toLowerCase().split(' ').join(''))) {
           alert('Username already exists. Please choose another username.');
         } else if (user.password !== user.confirmPassword) {
