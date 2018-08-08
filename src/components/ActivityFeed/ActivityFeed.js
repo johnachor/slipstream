@@ -41,6 +41,14 @@ class ActivityFeed extends React.Component {
     this.getFriendActivities();
   }
 
+  componentDidMount() {
+    this.autoupdate = setInterval(this.getFriendActivities, 30000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.autoupdate);
+  }
+
   render() {
     const reviews = this.state.friendReviews.map(review => {
       const reviewer = this.props.users.find(friend => { return friend.uid === review.ownerUid; });

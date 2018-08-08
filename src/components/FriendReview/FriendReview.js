@@ -108,7 +108,9 @@ class FriendReview extends React.Component {
                     placeholder="Add a comment..."
                     onChange={this.newCommentTextChange}
                   />
-                  <InputGroup.Button><Button bsStyle="basic" type="submit" onClick={this.addComment}>Submit</Button></InputGroup.Button>
+                  <InputGroup.Button>
+                    <Button bsStyle="basic" type="submit" onClick={this.addComment}>Submit</Button>
+                  </InputGroup.Button>
                 </InputGroup>
               </FormGroup>
             </form>
