@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
 import fbAuth from '../../firebaseReqs/auth';
 import fbUsers from '../../firebaseReqs/users';
+import fbFriends from '../../firebaseReqs/friends';
 import './Register.css';
 
 class Register extends React.Component {
@@ -43,13 +44,20 @@ class Register extends React.Component {
         } else {
           fbAuth.registerUser(user)
             .then((userResponse) => {
-              fbUsers.createUserObject({
-                uid: userResponse.user.uid,
+              const uid = userResponse.user.uid;
+              const newUserObject = {
+                uid: uid,
                 email: user.email,
                 username: user.username,
-              }).then(() => {
-                this.props.history.push('/dashboard');
-              });
+              };
+              const newFriendObject = {
+                senderUid: uid,
+                receiverUid: '92CMQWn4vhUBN7FxoVczxKL43tq1',
+                isAccepted: true,
+                isPending: false,
+              };
+              Promise.all([fbUsers.createUserObject(newUserObject), fbFriends.addRequest(newFriendObject)])
+                .then(this.props.history.push('/dashboard'));
             }).catch(err => console.error(err));
         }
       });
