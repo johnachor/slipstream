@@ -11,7 +11,7 @@ const jwGetItemDetail = (mediaType, mediaId) => {
 };
 
 const jwGetProviders = () => {
-  return axios.post(`${proxyDomain}/providers`, {});
+  return axios.get(`${proxyDomain}/providers`);
 };
 
 export default { jwSearch, jwGetItemDetail, jwGetProviders };
