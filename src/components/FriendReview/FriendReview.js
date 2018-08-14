@@ -82,7 +82,7 @@ class FriendReview extends React.Component {
 
     return (
       <div className="reviewHolder">
-        <div className="FriendReview col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div className="FriendReview col-xs-12">
           <div className="col-xs-4 col-sm-2 posterHolder">
             <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
           </div>
@@ -96,7 +96,7 @@ class FriendReview extends React.Component {
             <Button className="col-xs-6" onClick={this.addToQueue} disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to queue'}</Button>
           </div>
         </div>
-        <div className="commentHolder col-xs-12 col-sm-10 col-md-8">
+        <div className="commentHolder col-xs-12">
           {comments}
           <div className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
             <form>
@@ -109,7 +109,7 @@ class FriendReview extends React.Component {
                     onChange={this.newCommentTextChange}
                   />
                   <InputGroup.Button>
-                    <Button bsStyle="basic" type="submit" onClick={this.addComment}>Submit</Button>
+                    <Button type="submit" onClick={this.addComment}>Submit</Button>
                   </InputGroup.Button>
                 </InputGroup>
               </FormGroup>
