@@ -49,6 +49,7 @@
 
   .posterHolder {
     padding: 0;
+    border-right: 1px solid black;
     
     img {
       border-radius: 10px 0 0 10px;
@@ -72,6 +73,7 @@
 }
 
 .reviewComment {
+  padding-left: 10px;
   float: right;
   border-radius: 0;
   background-color: white;
@@ -85,11 +87,12 @@
   text-align: left;
 
   p {
+    margin-left: 15px;
     margin-top: 5px;
   }
 
   .form-group {
-    margin-top: 10px;
+    margin: 10px 0 10px 10px;
   }
 }
 

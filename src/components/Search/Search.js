@@ -2,7 +2,7 @@ import React from 'react';
 import jw from '../../justwatchApi/justwatch';
 import SearchResults from '../SearchResults/SearchResults';
 import fbSubs from '../../firebaseReqs/subs';
-import { Checkbox } from 'react-bootstrap';
+import { Checkbox, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import './Search.css';
 
 class Search extends React.Component {
@@ -68,36 +68,24 @@ class Search extends React.Component {
     const { searchText } = this.state;
     return (
       <div className="Search">
-        <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-          <div className="form-group">
-            <label htmlFor="searchInput" className="col-sm-4 control-label">
-              Search Term
-            </label>
-            <div className="col-sm-8">
-              <input
-                type="text"
-                className="form-control"
-                id="searchInput"
-                placeholder="Search..."
-                value={searchText}
-                onChange={this.searchTextChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-offset-5 col-sm-6">
+        <div className="container">
+          <form className="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <FormGroup>
+              <InputGroup>
+                <FormControl
+                  type="text"
+                  value={searchText}
+                  placeholder="Enter search term..."
+                  onChange={this.searchTextChange}
+                />
+                <InputGroup.Button>
+                  <Button className="searchButton" type="submit" onClick={this.searchJW} disabled={this.state.searching}> {this.state.searching ? 'Working...' : 'Submit'}</Button>
+                </InputGroup.Button>
+              </InputGroup>
               <Checkbox checked={this.state.filterForSubs} onChange={this.filterChange}>Show only streams on my subscriptions</Checkbox>
-              <button
-                type="submit"
-                className="btn btn-default col-xs-12"
-                onClick={this.searchJW}
-                disabled={this.state.searching}
-              >
-                {this.state.searching ? 'Working...' : 'Search'}
-              </button>
-            </div>
-          </div>
-        </form>
+            </FormGroup>
+          </form>
+        </div>
         <SearchResults results={this.state.searchResults} />
       </div>
     );
