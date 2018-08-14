@@ -1,11 +1,23 @@
 .MediaDetail {
-  padding: 2rem;
+  padding-top: 10px;
   transition: all 0.3s;
   background: aliceblue;
-  min-height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
+
+  @media screen and (max-width: 768px) {
+    .no-mobile {
+      display: none;
+    }
+  }
+
+  .mediaTitle {
+    font-weight: bold;
+  }
 
   .left-column {
-    
+    border: 1px solid black;
+    background: white;
+    border-radius: 10px;
 
     img {
       margin: 0;
@@ -14,30 +26,39 @@
 
     .mini-left {
       text-align: left;
+      border-right: 1px solid black;
     }
     .mini-right {
       text-align: right;
+      border-left: 1px solid black;
     }
   }
 
-  .clips-holder {
-    max-height: 500px;
+  .middle-column {
     overflow: auto;
-  }
+    max-height: 100%;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 3px;
 
-  .right-column {
-
-    overflow: auto;
-    max-height: calc(100vh - 60px);
+    
 
     .userReview {
       padding: 1rem;
-      border: 1px solid black;
-      position: relative;
-      transition: all 0.3s;
-      // box-shadow: 0 5px 5px black;
-      border-radius: 10px;
+      border-top: 1px solid black;
     }
+    .userReview:last-child {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .right-column {
+    background: white;
+    overflow: auto;
+    max-height: calc(100vh - 60px);
+    border: 1px solid black;
+    border-radius: 10px;
   }
   
   .providerLink {
@@ -54,6 +75,31 @@
   .avgRating {
     .dv-star-rating i {
       font-size: 3rem;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .container {
+      height: 100%;
+    }
+
+    .left-column {
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+      border-right: 0;
+    }
+
+    .middle-column {
+      height: 100%;
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .right-column {
+      height: 100%;
+      border-radius: 0 10px 10px 0;
+      border-left: 0;
     }
   }
 }
