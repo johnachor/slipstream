@@ -75,7 +75,7 @@ class FriendReview extends React.Component {
     const comments = this.state.comments.map(comment => {
       return (
         <div key={comment.commentText} className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
-          <p><b>{comment.username}: </b>{comment.commentText}</p>
+          <p className="negative-indent"><b>{comment.username}: </b><br/>{comment.commentText}</p>
         </div>
       );
     });

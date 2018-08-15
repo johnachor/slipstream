@@ -2,12 +2,18 @@
   padding-top: 10px;
   transition: all 0.3s;
   background: aliceblue;
-  height: calc(100vh - 60px);
+  height: 85vh;
+  max-height: calc(100vh - 60px);
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .no-mobile {
       display: none;
     }
+  }
+
+  .col-lg-4 {
+    overflow: auto;
+    max-height: 100%;
   }
 
   .mediaTitle {
@@ -35,28 +41,24 @@
   }
 
   .middle-column {
-    overflow: auto;
-    max-height: 100%;
-    background: white;
+    background: #EEEEEE;
     border: 1px solid black;
     border-radius: 10px;
     padding: 3px;
 
-    
+    .stream-holder {
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+    }
 
     .userReview {
       padding: 1rem;
       border-top: 1px solid black;
     }
-    .userReview:last-child {
-      border-bottom: 1px solid black;
-    }
   }
 
   .right-column {
     background: white;
-    overflow: auto;
-    max-height: calc(100vh - 60px);
     border: 1px solid black;
     border-radius: 10px;
   }
@@ -94,6 +96,10 @@
       border-radius: 0;
       border-left: 0;
       border-right: 0;
+
+      .userReview:last-child {
+        border-bottom: 1px solid black;
+      }
     }
 
     .right-column {

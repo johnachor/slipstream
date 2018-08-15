@@ -116,8 +116,10 @@ class MediaDetail extends React.Component {
             <p>{details.short_description}</p>
           </div>
           <div className="col-lg-4 middle-column">
-            <h4>Streaming options:</h4>
-            {streamLinks.length ? streamLinks : <h5>None</h5>}
+            <div className="stream-holder">
+              <h4>Streaming options:</h4>
+              {streamLinks.length ? streamLinks : <h5>None</h5>}
+            </div>
             <h4>Average user rating:</h4>
             <div className="avgRating">
               {this.state.overallRating === 0 ? 'No reviews yet' : avgRatingDisplay}

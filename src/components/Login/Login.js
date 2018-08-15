@@ -38,16 +38,15 @@ class Login extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <div className="Login">
+      <div className="Login container">
         <div id="login-form">
-          <h1 className="text-center">Login</h1>
-          <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+          <form className="login-form col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <h1 className="text-center">Magic Words?</h1>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
+              <ControlLabel>
                 Email
               </ControlLabel>
               <FormControl
-                className="col-sm-8"
                 type="text"
                 value={user.email}
                 placeholder="Email address"
@@ -55,7 +54,7 @@ class Login extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
+              <ControlLabel>
                 Password
               </ControlLabel>
               <FormControl
@@ -65,8 +64,8 @@ class Login extends React.Component {
                 onChange={this.passwordChange}
               />
             </FormGroup>
-            <Button className="col-xs-6 col-xs-offset-5" type="submit" onClick={this.loginClickEvent}>Login</Button>
-            <Link className="col-sm-4 col-sm-offset-7 text-right" to="/register">Register a new account</Link>
+            <Button bsStyle="primary" type="submit" onClick={this.loginClickEvent}>Login</Button>
+            <Link className="text-right col-xs-12" to="/register">Register a new account</Link>
           </form>
         </div>
       </div>

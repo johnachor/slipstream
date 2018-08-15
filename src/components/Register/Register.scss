@@ -2,17 +2,18 @@
   padding: 2rem;
   transition: all 0.3s;
   overflow: auto;
-  background: aliceblue;
-  min-height: calc(100vh - 50px);
+
+  .register-form {
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
 
   a {
     color: darkgoldenrod;
   }
 
   input {
-    @media screen and (min-width: 768px) {
-      max-width: 66%;
-    }
     border-radius: 10px;
     padding: 10px;
     line-height: 1;
@@ -23,5 +24,10 @@
   input:focus{
     outline: 0;
     background: #FFECAE;
+  }
+
+  .text-right {
+    margin: 10px 0 10px 0;
+    padding-right: 0;
   }
 }
