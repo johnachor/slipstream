@@ -1,11 +1,29 @@
 .MediaDetail {
-  padding: 2rem;
+  padding-top: 10px;
   transition: all 0.3s;
   background: aliceblue;
-  min-height: calc(100vh - 50px);
+  height: 85vh;
+  max-height: calc(100vh - 60px);
+
+  @media screen and (max-width: 767px) {
+    .no-mobile {
+      display: none;
+    }
+  }
+
+  .col-lg-4 {
+    overflow: auto;
+    max-height: 100%;
+  }
+
+  .mediaTitle {
+    font-weight: bold;
+  }
 
   .left-column {
-    
+    border: 1px solid black;
+    background: white;
+    border-radius: 10px;
 
     img {
       margin: 0;
@@ -14,30 +32,35 @@
 
     .mini-left {
       text-align: left;
+      border-right: 1px solid black;
     }
     .mini-right {
       text-align: right;
+      border-left: 1px solid black;
     }
   }
 
-  .clips-holder {
-    max-height: 500px;
-    overflow: auto;
-  }
+  .middle-column {
+    background: #EEEEEE;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 3px;
 
-  .right-column {
-
-    overflow: auto;
-    max-height: calc(100vh - 60px);
+    .stream-holder {
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+    }
 
     .userReview {
       padding: 1rem;
-      border: 1px solid black;
-      position: relative;
-      transition: all 0.3s;
-      // box-shadow: 0 5px 5px black;
-      border-radius: 10px;
+      border-top: 1px solid black;
     }
+  }
+
+  .right-column {
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
   }
   
   .providerLink {
@@ -54,6 +77,35 @@
   .avgRating {
     .dv-star-rating i {
       font-size: 3rem;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .container {
+      height: 100%;
+    }
+
+    .left-column {
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+      border-right: 0;
+    }
+
+    .middle-column {
+      height: 100%;
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+
+      .userReview:last-child {
+        border-bottom: 1px solid black;
+      }
+    }
+
+    .right-column {
+      height: 100%;
+      border-radius: 0 10px 10px 0;
+      border-left: 0;
     }
   }
 }

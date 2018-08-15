@@ -97,12 +97,12 @@ class Register extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <div className="Register">
-        <div id="login-form">
-          <h1 className="text-center">Register</h1>
-          <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+      <div className="Register container">
+        <div id="register-form">
+          <form className="register-form col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <h1 className="text-center">Register</h1>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
+              <ControlLabel className="text-left">
                 Username
               </ControlLabel>
               <FormControl
@@ -113,8 +113,8 @@ class Register extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
-                Email
+              <ControlLabel>
+                Email address
               </ControlLabel>
               <FormControl
                 type="text"
@@ -124,7 +124,7 @@ class Register extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
+              <ControlLabel>
                 Password
               </ControlLabel>
               <FormControl
@@ -135,7 +135,7 @@ class Register extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel className="col-sm-4">
+              <ControlLabel>
                 Confirm Password
               </ControlLabel>
               <FormControl
@@ -145,8 +145,8 @@ class Register extends React.Component {
                 onChange={this.confirmPasswordChange}
               />
             </FormGroup>
-            <Button className="col-sm-6 col-sm-offset-5" type="submit" onClick={this.registerClickEvent}>Register</Button>
-            <Link className="col-sm-4 col-sm-offset-7 text-right" to="/login">Looking for the login page?</Link>
+            <Button bsStyle="primary" type="submit" onClick={this.registerClickEvent}>Register</Button>
+            <Link className="col-xs-12 text-right" to="/login">Looking for the login page?</Link>
           </form>
         </div>
       </div>
