@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Allura');
+
 .Register {
   padding: 2rem;
   transition: all 0.3s;
   overflow: auto;
+  
+  h1 {
+    font-family: 'Allura', cursive;
+  }
 
   .register-form {
     background: white;
