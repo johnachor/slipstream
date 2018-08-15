@@ -20,7 +20,6 @@ The deployed site is available at http://slipstream.john-achor.com.
 - [`react-star-rating-component`](https://www.npmjs.com/package/react-star-rating-component)
 - [`react-youtube`](https://www.npmjs.com/package/react-youtube)
 - Media and streaming provider data from [JustWatch](https://www.justwatch.com) via [`justwatch-api`](https://www.npmjs.com/package/justwatch-api)
-- Leet stratz
 
 # How to use:
 
