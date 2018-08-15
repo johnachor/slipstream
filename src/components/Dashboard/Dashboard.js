@@ -62,14 +62,14 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard">
         <div className="container">
-          <div className="col-xs-12 col-lg-8 activity-holder">
+          <div className="col-xs-12 col-lg-8 col-md-7 activity-holder">
             <div className="container-fluid">
               <div className="col-xs-12">
                 <ActivityFeed friends={this.state.friendObjects} friendUids={this.state.friendUids} users={this.state.users} />
               </div>
             </div>
           </div>
-          <div className="col-xs-12 col-lg-4">
+          <div className="col-xs-12 col-lg-4 col-md-5">
             <FriendList updater={this.getUsersAndFriends} friendUids={this.state.friendUids} friendRequests={this.state.friendRequests} users={this.state.users}/>
           </div>
         </div>
