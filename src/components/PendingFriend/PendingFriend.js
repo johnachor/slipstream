@@ -11,6 +11,7 @@ class PendingFriend extends React.Component {
   confirmFriendRequest = () => {
     const acceptedReq = { ...this.props.req };
     delete acceptedReq.firebaseId;
+    delete acceptedReq.username;
     acceptedReq.isAccepted = true;
     acceptedReq.isPending = false;
     this.props.confirm(this.props.req.firebaseId, acceptedReq);
