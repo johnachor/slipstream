@@ -1,10 +1,21 @@
 .QueuedMedia {
   border-radius: 10px;
-  box-shadow: 0 5px 5px black;
+  border: 1px solid black;
   background-color: white;
   margin-bottom: 10px;
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
+
+  .posterHolder {
+    border-right: 1px solid black;
+    padding: 0;
+    overflow: auto;
+
+    img {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
 
   .dv-star-rating i {
     font-size: 3rem;
@@ -15,25 +26,61 @@
     margin: 0;
   }
 
-  .btn-block+.btn-block {
-    margin: 0;
-  }
-
-  .thumbnail {
-    margin-bottom: 0;
-
-    h4 {
-      text-overflow: ellipsis;
-      margin: 5px 0 0 0;
-      line-height: 2.5rem;
-      overflow-x: hidden;
-      display: block;
-      font-weight: bold;
-      white-space: nowrap;
-    }
+  h4 {
+    text-overflow: ellipsis;
+    margin: 5px 0 0 0;
+    line-height: 2.5rem;
+    overflow-x: hidden;
+    display: block;
+    font-weight: bold;
+    white-space: nowrap;
   }
 
   a:hover {
     text-decoration: none;
+  }
+
+  .buttonHolder {
+    padding: 0;
+    border-top: 1px solid black;
+  }
+
+  .queueBody {
+    padding: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .mobile-only {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .non-mobile-only {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  textarea {
+
+    height: 100px;
+
+    
+
+    @media screen and (min-width: 768px) {
+      height: 160px;
+    }
+
+    @media screen and (min-width: 992px) {
+      height: 71px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      height: 80px;
+    }
   }
 }

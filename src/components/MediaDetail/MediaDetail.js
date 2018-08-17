@@ -107,15 +107,15 @@ class MediaDetail extends React.Component {
     return details.title ? (
       <div className="MediaDetail">
         <div className="container">
-          <div className="col-lg-4 left-column">
+          <div className="col-lg-4 col-md-6 left-column">
             <h4 className="mediaTitle">{details.title}</h4>
-            <div className="col-xs-4 mini-left"><h4>{details.age_certification}</h4></div>
+            <div className="col-xs-4 mini-left"><h4>{details.age_certification ? details.age_certification : 'NR'}</h4></div>
             <div className="col-xs-4"><h4>{details.original_release_year}</h4></div>
             <div className="col-xs-4 mini-right"><h4>{details.object_type === 'show' ? `${details.max_season_number} seas.` : `${details.runtime} mins`}</h4></div>
             <img src={`https://images.justwatch.com${details.poster}`} alt="Poster" />
             <p>{details.short_description}</p>
           </div>
-          <div className="col-lg-4 middle-column">
+          <div className="col-lg-4 col-md-6 middle-column">
             <div className="stream-holder">
               <h4>Streaming options:</h4>
               {streamLinks.length ? streamLinks : <h5>None</h5>}
@@ -127,7 +127,7 @@ class MediaDetail extends React.Component {
             {reviews.length ? <h4>User Reviews:</h4> : ''}
             {reviews}
           </div>
-          <div className="col-lg-4 right-column no-mobile">
+          <div className="col-lg-4 right-column high-res-only">
             <h4>Clips and trailers:</h4>
             <div className="clips-holder">{clips.length ? clips : 'None'}</div>
           </div>

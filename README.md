@@ -13,10 +13,13 @@ The deployed site is available at http://slipstream.john-achor.com.
 - HTML (as JSX)
 - CSS (as Sass)
 - JavaScript
-- React.js
-- axios
-- Firebase (hosting and data storage)
-- Bootstrap 3 (as `react-bootstrap`)
+- [React.js](https://reactjs.org/) (bootstrapped with `create-react-app`)
+- [`axios`](https://www.npmjs.com/package/axios)
+- [Firebase](https://firebase.google.com/) (hosting and data storage)
+- Bootstrap 3 (as [`react-bootstrap`](https://react-bootstrap.github.io/))
+- [`react-star-rating-component`](https://www.npmjs.com/package/react-star-rating-component)
+- [`react-youtube`](https://www.npmjs.com/package/react-youtube)
+- Media and streaming provider data from [JustWatch](https://www.justwatch.com) via [`justwatch-api`](https://www.npmjs.com/package/justwatch-api)
 
 # How to use:
 

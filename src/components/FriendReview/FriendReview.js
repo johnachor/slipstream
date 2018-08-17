@@ -74,7 +74,7 @@ class FriendReview extends React.Component {
 
     const comments = this.state.comments.map(comment => {
       return (
-        <div key={comment.commentText} className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
+        <div key={comment.commentText} className="reviewComment col-xs-12 col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
           <p className="negative-indent"><b>{comment.username}: </b><br/>{comment.commentText}</p>
         </div>
       );
@@ -83,22 +83,22 @@ class FriendReview extends React.Component {
     return (
       <div className="reviewHolder">
         <div className="FriendReview col-xs-12">
-          <div className="col-xs-4 col-sm-2 posterHolder">
+          <div className="col-xs-4 col-sm-3 col-lg-2 posterHolder">
             <img src={`https://images.justwatch.com${review.posterUrl}`} alt="Poster" />
           </div>
-          <div className="col-xs-8 col-sm-10 reviewBody">
+          <div className="col-xs-8 col-sm-9 col-lg-10 reviewBody">
             <h4>{reviewer.username} reviewed </h4>
             <h4>{review.title}</h4>
             <StarRating name="reviewRating" starCount={5} value={review.starRating} editing={false} />
           </div>
-          <div className="col-xs-8 col-sm-10 queueButtonHolder">
+          <div className="col-xs-8 col-sm-9 col-lg-10 queueButtonHolder">
             <LinkContainer className="col-xs-6" to={`/detail/${review.mediaType}/${review.mediaId}`}><Button bsStyle='info'>See Details</Button></LinkContainer>
             <Button className="col-xs-6" onClick={this.addToQueue} disabled={this.state.queued} bsStyle={this.state.queued ? 'success' : 'primary'}>{this.state.queued ? 'Added!' : 'Add to queue'}</Button>
           </div>
         </div>
         <div className="commentHolder col-xs-12">
           {comments}
-          <div className="reviewComment col-xs-12 col-sm-10 col-sm-offset-2">
+          <div className="reviewComment col-xs-12 col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
             <form>
               <FormGroup>
                 <InputGroup>
