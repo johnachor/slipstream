@@ -29,7 +29,7 @@ class ActivityFeed extends React.Component {
           // sort by date descending
           .sort((a, b) => { return b.reviewDate - a.reviewDate; })
           // limit to last 20 so we don't get a massive page that scrolls forever -- may include pagination later
-          .slice(0, 20);
+          .slice(0, 10);
         const allComments = Object.values(responseArray[1].data);
         this.setState({ friendReviews: friendReviews, comments: allComments });
         this.forceUpdate();

@@ -42,6 +42,8 @@ class Queue extends React.Component {
       fbQueue.addReview(firebaseId, reviewedMedia)
         .then(this.updateQueue)
         .catch(err => console.error(err));
+    } else {
+      alert('Please choose a star rating to submit a review.');
     }
   }
 

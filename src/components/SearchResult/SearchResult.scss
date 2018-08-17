@@ -1,13 +1,77 @@
 .SearchResult {
   border-radius: 10px;
-  box-shadow: 0 5px 5px black;
+  border: 1px solid black;
   background-color: white;
   margin-bottom: 10px;
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
 
-  .dv-star-rating i {
-    font-size: 3rem;
+  .posterHolder {
+    border-right: 1px solid black;
+    padding: 0;
+    overflow: auto;
+
+    img {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  h4 {
+    text-overflow: ellipsis;
+    margin: 5px 0 0 0;
+    line-height: 2.5rem;
+    overflow-x: hidden;
+    display: block;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .buttonHolder {
+    border-top: 1px solid black;
+    padding: 0;
+  }
+
+  .resultBody {
+    padding: 0;
+  }
+
+  .mobile-only {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .non-mobile-only {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  p {  
+
+    text-align: left;
+    margin-bottom: 0;
+    overflow: auto;
+    max-height: 100px;
+    padding: 5px;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      border-top: 1px solid black;
+    }
+
+    @media screen and (min-width: 768px) {
+      max-height: 213px;
+    }
+
+    @media screen and (min-width: 992px) {
+      max-height: 124px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      max-height: 133px;
+    }
   }
 
   .btn {
@@ -15,28 +79,7 @@
     margin: 0;
   }
 
-  .thumbnail {
-    margin-bottom: 0;
-
-    .caption {
-      padding: 0;
-
-      h4 {
-        text-overflow: ellipsis;
-        margin: 5px 0 0 0;
-        line-height: 2.5rem;
-        overflow-x: hidden;
-        display: block;
-        font-weight: bold;
-        white-space: nowrap;
-      }
-
-      p {
-        overflow: auto;
-        height: 100px;
-      }
-    }
-  }
+  
   a:hover {
     text-decoration: none;
   }

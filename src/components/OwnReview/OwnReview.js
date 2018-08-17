@@ -13,18 +13,21 @@ class OwnReview extends React.Component {
   render() {
     const { media } = this.props;
     return (
-      <div className="col-xs-12 col-sm-6 col-md-4">
+      <div className="col-xs-12 col-md-6">
         <div className="OwnReview">
-          <Button bsStyle="danger" onClick={this.removeItem}>Delete Review</Button>
-          <div className="thumbnail">
+          <div className="col-xs-4 col-sm-3 col-lg-4 posterHolder">
             <img src={`https://images.justwatch.com${media.posterUrl}`} alt="Poster" />
-            <div className="caption">
-              <h4>{media.title}</h4>
-              <StarRating name="mediaRating" starCount={5} value={media.starRating} editing={false} />
-              <p>{media.reviewText}</p>
-            </div>
           </div>
-          <LinkContainer to={`/detail/${media.mediaType}/${media.mediaId}`}><Button block bsStyle='info'>See Details</Button></LinkContainer>
+          <div className="col-xs-8 col-sm-9 col-lg-8 reviewBody">
+            <h4>{media.title}</h4>
+            <StarRating name="mediaRating" starCount={5} value={media.starRating} editing={false} />
+            <p className="non-mobile-only">{media.reviewText}</p>
+          </div>
+          <p className="mobile-only">{media.reviewText}</p>
+          <div className="col-xs-12 buttonHolder">
+            <Button className="col-xs-6" bsStyle="danger" onClick={this.removeItem}>Remove</Button>
+            <LinkContainer className="col-xs-6" to={`/detail/${media.mediaType}/${media.mediaId}`}><Button bsStyle='info'>Details</Button></LinkContainer>
+          </div>
         </div>
       </div>
     );

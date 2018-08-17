@@ -1,16 +1,9 @@
 .OwnReviews { 
-  padding: 2rem;
   position: relative;
   transition: all 0.3s;
   overflow: auto;
   background: aliceblue;
   min-height: calc(100vh - 50px);
-
-  h4 {
-      text-overflow: ellipsis;
-      margin: 5px 0 0 0;
-      overflow-x: hidden;
-      display: block;
-      white-space: nowrap;
-    }
+  padding-top: 10px;
+  
 }
