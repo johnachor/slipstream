@@ -30,10 +30,7 @@ class Search extends React.Component {
   };
 
   setSearchResults = (apiResponse) => {
-    let searchResults = apiResponse.data.items.filter(item => { return item.poster; });
-    if (this.state.filterForSubs) {
-      searchResults = searchResults.filter(this.hasStream);
-    }
+    const searchResults = apiResponse.data.items.filter(item => { return item.poster; });
     this.setState({ searchResults: searchResults });
   };
 
@@ -66,6 +63,8 @@ class Search extends React.Component {
 
   render() {
     const { searchText } = this.state;
+
+    const searchResults = this.state.filterForSubs ? this.state.searchResults.filter(this.hasStream) : this.state.searchResults;
     return (
       <div className="Search">
         <div className="container">
@@ -86,7 +85,7 @@ class Search extends React.Component {
             </FormGroup>
           </form>
         </div>
-        <SearchResults results={this.state.searchResults} />
+        <SearchResults results={searchResults} />
       </div>
     );
   }
