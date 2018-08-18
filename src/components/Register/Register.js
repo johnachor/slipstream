@@ -64,7 +64,7 @@ class Register extends React.Component {
                 isPending: false,
               };
               Promise.all([fbUsers.createUserObject(newUserObject), fbFriends.addRequest(newFriendObject)])
-                .then(this.props.history.push('/dashboard'));
+                .then(this.props.history.push('/search'));
             }).catch(err => console.error(err));
         }
       });
