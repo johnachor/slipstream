@@ -3,6 +3,7 @@ import jw from '../../justwatchApi/justwatch';
 import './MediaDetail.css';
 import fbQueue from '../../firebaseReqs/queue';
 import fbSubs from '../../firebaseReqs/subs';
+import fbUsers from '../../firebaseReqs/users';
 import StarRating from 'react-star-rating-component';
 import YouTube from 'react-youtube';
 
@@ -54,19 +55,22 @@ class MediaDetail extends React.Component {
       return providersObject;
     }, {});
 
+    const users = Object.values(promiseResponseArray[4].data);
+
     this.setState({
       details: itemDetail,
       userReviews: userReviews,
       overallRating: overallRating,
       userSubscriptions: userSubscriptions,
       streamingProviders: streamingProviders,
+      users: users,
     });
   }
 
   componentDidMount() {
     const mediaType = this.props.match.params.mediaType;
     const mediaId = this.props.match.params.mediaId;
-    Promise.all([jw.jwGetItemDetail(mediaType, mediaId), fbQueue.getEntireQueue(), jw.jwGetProviders(), fbSubs.getMySubscriptions()])
+    Promise.all([jw.jwGetItemDetail(mediaType, mediaId), fbQueue.getEntireQueue(), jw.jwGetProviders(), fbSubs.getMySubscriptions(), fbUsers.getAllUsers()])
       .then(this.shapeData)
       .catch(err => console.error(err));
   }
@@ -79,7 +83,9 @@ class MediaDetail extends React.Component {
       return review.reviewText ? (
         <div key={review.ownerUid} className="userReview">
           <StarRating name="userStarRating" starCount={5} value={review.starRating} editing={false} />
-          <p className="text-left">{review.reviewText}</p>
+          <p className="text-left">{review.reviewText} ― <i>{this.state.users.find(user => {
+            return user.uid === review.ownerUid;
+          }).username}, {new Date(review.reviewDate).toLocaleDateString()}</i></p>
         </div>
       ) : '';
     });
