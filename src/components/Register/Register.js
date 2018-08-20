@@ -50,88 +50,88 @@ class Register extends React.Component {
       });
   };
 
-emailChange = (e) => {
-  const tempUser = { ...this.state.user };
-  tempUser.email = e.target.value;
-  this.setState({ user: tempUser });
-};
+  emailChange = (e) => {
+    const tempUser = { ...this.state.user };
+    tempUser.email = e.target.value;
+    this.setState({ user: tempUser });
+  };
 
-passwordChange = (e) => {
-  const tempUser = { ...this.state.user };
-  tempUser.password = e.target.value;
-  this.setState({ user: tempUser });
-};
+  passwordChange = (e) => {
+    const tempUser = { ...this.state.user };
+    tempUser.password = e.target.value;
+    this.setState({ user: tempUser });
+  };
 
-confirmPasswordChange = (e) => {
-  const tempUser = { ...this.state.user };
-  tempUser.confirmPassword = e.target.value;
-  this.setState({ user: tempUser });
-};
+  confirmPasswordChange = (e) => {
+    const tempUser = { ...this.state.user };
+    tempUser.confirmPassword = e.target.value;
+    this.setState({ user: tempUser });
+  };
 
-usernameChange = (e) => {
-  const tempUser = { ...this.state.user };
-  tempUser.username = e.target.value;
-  this.setState({ user: tempUser });
-};
+  usernameChange = (e) => {
+    const tempUser = { ...this.state.user };
+    tempUser.username = e.target.value;
+    this.setState({ user: tempUser });
+  };
 
-render() {
-  const { user } = this.state;
-  return (
-    <div className="Register container">
-      <div id="register-form">
-        <form className="register-form col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-          <h1 className="text-center">Register</h1>
-          <FormGroup>
-            <ControlLabel className="text-left">
-              Username
-            </ControlLabel>
-            <FormControl
-              type="text"
-              value={user.username}
-              placeholder="Username"
-              onChange={this.usernameChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>
-              Email address
-            </ControlLabel>
-            <FormControl
-              type="text"
-              value={user.email}
-              placeholder="Email address"
-              onChange={this.emailChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>
-              Password
-            </ControlLabel>
-            <FormControl
-              type="password"
-              value={user.password}
-              placeholder="Password"
-              onChange={this.passwordChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>
-              Confirm Password
-            </ControlLabel>
-            <FormControl
-              type="password"
-              value={user.confirmPassword}
-              placeholder="Confirm Password"
-              onChange={this.confirmPasswordChange}
-            />
-          </FormGroup>
-          <Button bsStyle="primary" type="submit" onClick={this.registerClickEvent}>Register</Button>
-          <Link className="col-xs-12 text-right" to="/login">Looking for the login page?</Link>
-        </form>
+  render() {
+    const { user } = this.state;
+    return (
+      <div className="Register container">
+        <div id="register-form">
+          <form className="register-form col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <h1 className="text-center">Register</h1>
+            <FormGroup>
+              <ControlLabel className="text-left">
+                Username
+              </ControlLabel>
+              <FormControl
+                type="text"
+                value={user.username}
+                placeholder="Username"
+                onChange={this.usernameChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>
+                Email address
+              </ControlLabel>
+              <FormControl
+                type="text"
+                value={user.email}
+                placeholder="Email address"
+                onChange={this.emailChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>
+                Password
+              </ControlLabel>
+              <FormControl
+                type="password"
+                value={user.password}
+                placeholder="Password"
+                onChange={this.passwordChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>
+                Confirm Password
+              </ControlLabel>
+              <FormControl
+                type="password"
+                value={user.confirmPassword}
+                placeholder="Confirm Password"
+                onChange={this.confirmPasswordChange}
+              />
+            </FormGroup>
+            <Button bsStyle="primary" type="submit" onClick={this.registerClickEvent}>Register</Button>
+            <Link className="col-xs-12 text-right" to="/login">Looking for the login page?</Link>
+          </form>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default Register;
