@@ -4,6 +4,7 @@ import { FormControl, ControlLabel, FormGroup, Button } from 'react-bootstrap';
 import fbAuth from '../../firebaseReqs/auth';
 import fbUsers from '../../firebaseReqs/users';
 import fbFriends from '../../firebaseReqs/friends';
+import { validateNewUser, getTestFailFeedback } from './validate';
 import './Register.css';
 
 class Register extends React.Component {
@@ -16,38 +17,17 @@ class Register extends React.Component {
     },
   };
 
-  // TODO: refactor this - single responsibility functions
   registerClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
     fbUsers.getAllUsers()
       .catch(err => console.error(err))
       .then(fbReturnedUsers => {
-        const existingUsernames = Object.values(fbReturnedUsers.data).reduce((usernameArray, user) => {
-          usernameArray.push(user.username.toLowerCase().split(' ').join(''));
-          return usernameArray;
-        }, []);
-        const existingEmails = Object.values(fbReturnedUsers.data).reduce((emailArray, user) => {
-          emailArray.push(user.email.toLowerCase().split(' ').join(''));
-          return emailArray;
-        }, []);
-        if (user.username.length < 6) {
-          alert('Please enter a username of at least 6 characters.');
-          document.getElementById('inputUsername').focus();
-        } else if (user.password.length < 6) {
-          alert('Passwords must be at least 6 characters in length.');
-        } else if (existingEmails.includes(user.email)) {
-          alert('Email address matches an existing account.');
-        } else if (existingUsernames.includes(user.username.toLowerCase().split(' ').join(''))) {
-          alert('Username already exists. Please choose another username.');
-        } else if (user.password !== user.confirmPassword) {
-          alert('Password fields do not match.');
-          const tempUser = { ...this.state.user };
-          tempUser.password = '';
-          tempUser.confirmPassword = '';
-          this.setState({ user: tempUser });
-          document.getElementById('inputPassword').value = '';
-          document.getElementById('confirmPassword').value = '';
+
+        const testResults = validateNewUser(user, fbReturnedUsers.data);
+
+        if (testResults.length) {
+          alert('Please correct the following issues:\n\n' + testResults.map(getTestFailFeedback).join('\n'));
         } else {
           fbAuth.registerUser(user)
             .then((userResponse) => {
