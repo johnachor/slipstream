@@ -26,7 +26,9 @@ class Register extends React.Component {
 
         const testResults = validateNewUser(user, fbReturnedUsers.data);
 
-        if (!testResults.length) {
+        if (testResults.length) {
+          alert('Please correct the following issues:\n\n' + testResults.map(getTestFailFeedback).join('\n'));
+        } else {
           fbAuth.registerUser(user)
             .then((userResponse) => {
               const uid = userResponse.user.uid;
@@ -44,8 +46,6 @@ class Register extends React.Component {
               Promise.all([fbUsers.createUserObject(newUserObject), fbFriends.addRequest(newFriendObject)])
                 .then(this.props.history.push('/search'));
             }).catch(err => console.error(err));
-        } else {
-          alert('Please fix the following issues:\n\n' + testResults.map(getTestFailFeedback).join('\n'));
         }
       });
   };

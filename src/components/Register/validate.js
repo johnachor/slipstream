@@ -52,10 +52,10 @@ const validateNewUser = (newUser, usersArray) => {
 
 const getTestFailFeedback = (testIndex) => {
   const testFailMessages = [
-    'Username must be at least six characters (not including spaces).',
-    'Password must be at least six characters.',
-    'Email address not correctly formatted.',
-    'Email address is already registered.',
+    'Username must contain at least 6 characters (not including spaces).',
+    'Password must contain at least 6 characters.',
+    'Email address is not correctly formatted.',
+    'Email address is already in use.',
     'Username is not unique.  Usernames are case and space insensitive.',
     'Password fields do not match.',
   ];
