@@ -82,6 +82,10 @@ class FriendList extends React.Component {
     this.updateFriendsList();
   }
 
+  componentDidMount() {
+    this.updateFriendsList();
+  }
+
   // filters the array of available non-friends for the search term
   // username can partial match, email must match exactly
   searchUsers = (e) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroupItem, Button } from 'react-bootstrap';
 import './CurrentSubscription.css';
 
-class CurrentSubscription extends React.Component {
+export default class CurrentSubscription extends React.Component {
 
   unsubscribe = () => {
     this.props.deleter(this.props.sub.firebaseId);
@@ -16,7 +16,4 @@ class CurrentSubscription extends React.Component {
       </ListGroupItem>
     );
   }
-
 };
-
-export default CurrentSubscription;

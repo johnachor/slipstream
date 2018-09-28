@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroupItem, Button } from 'react-bootstrap';
 import './AvailableProvider.css';
 
-class AvailableProvider extends React.Component {
+export default class AvailableProvider extends React.Component {
 
   subscribe = (e) => {
     e.target.disabled = true;
@@ -17,7 +17,4 @@ class AvailableProvider extends React.Component {
       </ListGroupItem>
     );
   }
-
 };
-
-export default AvailableProvider;
