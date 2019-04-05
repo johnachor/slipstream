@@ -104,7 +104,7 @@ class MediaDetail extends React.Component {
     })
       .map(offer => {
         return (
-          <a target="_blank" className="providerLink" key={offer.provider_id} href={`${offer.urls.standard_web}`}><img alt={this.state.streamingProviders[offer.provider_id].name} src={`https://images.justwatch.com${this.state.streamingProviders[offer.provider_id].icon}`} /></a>
+          <a target="_blank" rel="noopener noreferrer" className="providerLink" key={offer.provider_id} href={`${offer.urls.standard_web}`}><img alt={this.state.streamingProviders[offer.provider_id].name} src={`https://images.justwatch.com${this.state.streamingProviders[offer.provider_id].icon}`} /></a>
         );
       }) : [];
 
