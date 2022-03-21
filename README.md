@@ -60,7 +60,7 @@ This view allows the user to search the JustWatch database using a provided sear
 
 ## Item Detail
 
-Generally not directly accessible, this view is used whenever the `See Details` button is clicked on a media item in any of the other views.
+This view is used whenever the `See Details` button is clicked on a media item in any of the other views.
 
 This view contains three sections.  
 
