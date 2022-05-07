@@ -6,7 +6,7 @@ A social app where users can search for and add movies and TV shows to their per
 
 This solo project is the culmination of my time in the front-end segment of the NSS full stack web developer program.
 
-The deployed site is available at http://slipstream.john-achor.com.
+The deployed site is available at https://slipstream-frontend.web.app/.
 
 #### Technologies used in this project:
 
